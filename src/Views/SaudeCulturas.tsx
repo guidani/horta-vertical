@@ -1,22 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { FAB, TextInput } from "react-native-paper";
+import { FAB } from "react-native-paper";
 
-export default function SaudeCulturas({
-  navigation,
-}: {
-  navigation: any;
-}) {
-  const [text, setText] = React.useState("");
+export default function SaudeCulturas({ navigation }: { navigation: any }) {
   return (
     <View style={styles.container}>
       <Text>Saude Culturas</Text>
-      <TextInput
-        label="Email"
-        value={text}
-        style={styles.inputStyle}
-        onChangeText={(text) => setText(text)}
-      />
+
       <FAB
         icon="chevron-right"
         style={styles.fab}

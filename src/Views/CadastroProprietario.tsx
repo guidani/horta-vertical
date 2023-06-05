@@ -12,7 +12,7 @@ export default function CadastroProprietario({
     <View style={styles.container}>
       <Text>Cadastro do proprietario</Text>
       <TextInput
-        label="Email"
+        label="Seu nome"
         value={text}
         style={styles.inputStyle}
         onChangeText={(text) => setText(text)}

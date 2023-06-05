@@ -1,13 +1,13 @@
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import UIProvider from "../Providers/UIProvider";
-import StackRoute from "./Stack.routes";
+import DrawerRoutes from "./Drawer.routes";
 
 export default function Routes() {
   return (
     <NavigationContainer>
       <UIProvider>
-        <StackRoute />
+        <DrawerRoutes />
       </UIProvider>
     </NavigationContainer>
   );

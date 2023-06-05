@@ -2,17 +2,13 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { FAB, TextInput } from "react-native-paper";
 
-export default function CadastroHortalica({
-  navigation,
-}: {
-  navigation: any;
-}) {
+export default function CadastroHortalica({ navigation }: { navigation: any }) {
   const [text, setText] = React.useState("");
   return (
     <View style={styles.container}>
-      <Text>Cadastro do proprietario</Text>
+      <Text>Cadastro Hortaliça</Text>
       <TextInput
-        label="Email"
+        label=""
         value={text}
         style={styles.inputStyle}
         onChangeText={(text) => setText(text)}

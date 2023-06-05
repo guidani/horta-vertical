@@ -6,9 +6,8 @@ export default function CadastroHorta({navigation}: {navigation: any}) {
   const [text, setText] = React.useState("");
   return (
     <View style={styles.container}>
-      <Text>Cadastro da horta</Text>
       <TextInput
-        label="Email"
+        label="Dê um nome legal para sua nova horta"
         value={text}
         style={styles.inputStyle}
         onChangeText={(text) => setText(text)}
