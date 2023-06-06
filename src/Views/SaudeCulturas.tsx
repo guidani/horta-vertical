@@ -1,17 +1,21 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { FAB } from "react-native-paper";
+import { StyleSheet, View } from "react-native";
+import { Text } from "react-native-paper";
 
 export default function SaudeCulturas({ navigation }: { navigation: any }) {
   return (
     <View style={styles.container}>
-      <Text>Saude Culturas</Text>
-
-      <FAB
-        icon="chevron-right"
-        style={styles.fab}
-        onPress={() => navigation.navigate("CadastroHorta")}
-      />
+      <Text
+        variant="headlineSmall"
+        style={{
+          padding: 8,
+          backgroundColor: "#fff",
+          borderBottomWidth: 2,
+          borderBottomColor: "#ccc",
+        }}
+      >
+        Saúde Culturas
+      </Text>
     </View>
   );
 }
@@ -19,18 +23,8 @@ export default function SaudeCulturas({ navigation }: { navigation: any }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#F6FFF4",
+    gap: 4,
     paddingHorizontal: 8,
-  },
-  inputStyle: {
-    width: "100%",
-  },
-  fab: {
-    position: "absolute",
-    margin: 16,
-    right: 0,
-    bottom: 0,
   },
 });

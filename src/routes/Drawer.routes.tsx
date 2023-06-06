@@ -11,6 +11,7 @@ export default function DrawerRoutes() {
         title: "Minha Horta",
         drawerActiveTintColor: "#1C1B1F",
         drawerActiveBackgroundColor: "#A2CE86",
+        
       }}
     >
       <Drawer.Screen

@@ -15,6 +15,15 @@ export default function StackRoute() {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen
+        name="VisaoGeral"
+        component={VisaoGeral}
+        options={{
+          headerTitle: "Visão Geral",
+          headerTitleAlign: "center",
+          header: () => null,
+        }}
+      />
+      <Stack.Screen
         name="CadastroProprietario"
         component={CadastroProprietario}
         options={{
@@ -35,15 +44,7 @@ export default function StackRoute() {
           headerTitle: "Cadastro da hortaliça",
         }}
       />
-      <Stack.Screen
-        name="VisaoGeral"
-        component={VisaoGeral}
-        options={{
-          headerTitle: "Visão Geral",
-          headerTitleAlign: "center",
-          header: () => null,
-        }}
-      />
+      
       <Stack.Screen
         name="SaudeCulturas"
         component={SaudeCulturas}

@@ -1,17 +1,35 @@
+import { Feather } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { FAB } from "react-native-paper";
+import { StyleSheet, View } from "react-native";
+import { Button } from "react-native-paper";
+import DisplayData from "../components/DisplayData";
 
 export default function VisaoGeral({ navigation }: { navigation: any }) {
   return (
     <View style={styles.container}>
-      <Text>Visao Geral</Text>
-
-      <FAB
-        icon="chevron-right"
-        style={styles.fab}
-        onPress={() => navigation.navigate("CadastroHorta")}
-      />
+      <View style={styles.displayDataSection}>
+        <DisplayData label="Luminosidade" data={99} iconName={"thermometer"} />
+        <DisplayData label="Temperatura" data={99} iconName={"sun"} />
+        <DisplayData label="Humidade" data={99} iconName={"cloud"} />
+      </View>
+      <Button
+        mode="elevated"
+        onPress={() => navigation.navigate("SaudeCulturas")}
+        buttonColor="#7CD8A4"
+        textColor="#fff"
+        icon={({ color, size }) => {
+          return <Feather name={"arrow-right"} color={color} size={size} />;
+        }}
+        style={{
+          borderRadius: 4,
+        }}
+        contentStyle={{
+          flexDirection: "row-reverse",
+          justifyContent: "space-between",
+        }}
+      >
+        Ver saude das culturas
+      </Button>
     </View>
   );
 }
@@ -19,10 +37,18 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#F6FFF4",
+    gap: 4,
     paddingHorizontal: 8,
+  },
+  displayDataSection: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    flexWrap: "wrap",
+    gap: 4,
+    backgroundColor: "#F6FFF4",
+    paddingHorizontal: 8,
+    marginVertical: 8,
   },
   inputStyle: {
     width: "100%",
