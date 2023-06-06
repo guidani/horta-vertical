@@ -1,29 +1,45 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import CadastroCultura from "../Views/CadastroCultura";
-import CadastroHorta from "../Views/CadastroHorta";
-import CadastroProprietario from "../Views/CadastroProprietario";
+import EditarCultura from "../Views/EditarCultura";
 import SaudeCulturas from "../Views/SaudeCulturas";
-import VisaoGeral from "../Views/VisaoGeral";
 
 const Stack = createNativeStackNavigator();
 
 export default function StackRoute() {
   return (
     <Stack.Navigator
-      initialRouteName="VisaoGeral"
-      screenOptions={{ headerShown: false }}
+      initialRouteName="SaudeCulturas"
+      screenOptions={{
+        header: () => null,
+      }}
     >
       <Stack.Screen
-        name="VisaoGeral"
-        component={VisaoGeral}
+        name="SaudeCulturas"
+        component={SaudeCulturas}
         options={{
-          headerTitle: "Visão Geral",
+          headerTitle: "Saúde das Culturas",
           headerTitleAlign: "center",
-          header: () => null,
         }}
       />
       <Stack.Screen
+        name="CadastroCultura"
+        component={CadastroCultura}
+        options={{
+          headerTitle: "Cadastro Cultura",
+          headerTitleAlign: "center",
+        }}
+      />
+
+      <Stack.Screen
+        name="EditarCultura"
+        component={EditarCultura}
+        options={{
+          headerTitle: "Editar Cultura",
+          headerTitleAlign: "center",
+        }}
+      />
+      {/* <Stack.Screen
         name="CadastroProprietario"
         component={CadastroProprietario}
         options={{
@@ -51,7 +67,7 @@ export default function StackRoute() {
         options={{
           headerTitle: "Saúde das culturas",
         }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 }

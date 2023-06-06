@@ -1,16 +1,104 @@
+import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Text } from "react-native-paper";
+import { FAB, Text, TextInput } from "react-native-paper";
+export default function EditarCultura({
+  navigation,
+  route,
+}: {
+  navigation: any;
+  route: any;
+}) {
+  const { itemId } = route.params;
+  const [lumenMin, setLumenMin] = React.useState<string | number | null>(null);
+  const [lumenMax, setLumenMax] = React.useState<string | number | null>(null);
+  const [humidadeMin, setHumidadeMin] = React.useState<string | number | null>(
+    null
+  );
+  const [humidadeMax, setHumidadeMax] = React.useState<string | number | null>(
+    null
+  );
+  const [tempMin, setTempMin] = React.useState<string | number | null>(null);
+  const [tempMax, setTempMax] = React.useState<string | number | null>(null);
 
-export default function EditarCultura({ navigation }: { navigation: any }) {
+  React.useEffect(() => {
+    // Carregar os dados do banco
+    // Alterar nos estados
+  }, []);
   return (
     <View style={styles.container}>
       <Text variant="bodySmall">EditarCultura</Text>
+      <Text variant="bodyLarge">{itemId}</Text>
+      <TextInput label={"Nome"} />
+      <View>
+        <Text variant="labelLarge">Luminosidade (L)</Text>
+        <View style={{ flexDirection: "row", gap: 4 }}>
+          <TextInput
+            label={"Min"}
+            style={{ flex: 1 }}
+            keyboardType="numeric"
+            onChangeText={(text) => setLumenMin(text)}
+          />
+          <TextInput
+            label={"Máx"}
+            style={{ flex: 1 }}
+            keyboardType="numeric"
+            onChangeText={(text) => setLumenMax(text)}
+          />
+        </View>
+        <Text variant="labelLarge">Humidade (%)</Text>
+        <View style={{ flexDirection: "row", gap: 4 }}>
+          <TextInput
+            label={"Min"}
+            style={{ flex: 1 }}
+            keyboardType="numeric"
+            onChangeText={(text) => setHumidadeMin(text)}
+          />
+          <TextInput
+            label={"Máx"}
+            style={{ flex: 1 }}
+            keyboardType="numeric"
+            onChangeText={(text) => setHumidadeMax(text)}
+          />
+        </View>
+        <Text variant="labelLarge">Temperatura (ºC)</Text>
+        <View style={{ flexDirection: "row", gap: 4 }}>
+          <TextInput
+            label={"Min"}
+            style={{ flex: 1 }}
+            keyboardType="numeric"
+            onChangeText={(text) => setTempMin(text)}
+          />
+          <TextInput
+            label={"Máx"}
+            style={{ flex: 1 }}
+            keyboardType="numeric"
+            onChangeText={(text) => setTempMax(text)}
+          />
+        </View>
+      </View>
+
+      <FAB
+        onPress={() => {
+          console.log("Salvo no banco de dados!!!");
+          navigation.goBack();
+        }}
+        style={styles.fab}
+        icon={({ color, size }) => {
+          return <Feather name={"save"} color={color} size={size} />;
+        }}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  fab: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    bottom: 0,
+  },
   container: {
     flex: 1,
     backgroundColor: "#F6FFF4",

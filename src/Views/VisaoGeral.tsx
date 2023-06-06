@@ -14,7 +14,7 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
       </View>
       <Button
         mode="elevated"
-        onPress={() => navigation.navigate("SaudeCulturas")}
+        onPress={() => navigation.navigate("SaudeDasCulturas")}
         buttonColor="#7CD8A4"
         textColor="#fff"
         icon={({ color, size }) => {

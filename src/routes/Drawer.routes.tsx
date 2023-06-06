@@ -1,14 +1,14 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import CadastroCultura from "../Views/CadastroCultura";
 import Culturas from "../Views/Culturas";
-import SaudeCulturas from "../Views/SaudeCulturas";
 import VisaoGeral from "../Views/VisaoGeral";
+import StackRoute from "./Stack.routes";
 
 const Drawer = createDrawerNavigator();
 
 export default function DrawerRoutes() {
   return (
     <Drawer.Navigator
+      initialRouteName="VisaoGeral"
       screenOptions={{
         title: "Minha Horta",
         drawerActiveTintColor: "#1C1B1F",
@@ -32,30 +32,27 @@ export default function DrawerRoutes() {
         }}
       />
       <Drawer.Screen
-        name="SaudeCulturas"
-        component={SaudeCulturas}
+        name="SaudeDasCulturas"
+        component={StackRoute}
         options={{
           title: "Saúde das culturas",
           drawerLabel: "Saúde das culturas",
         }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="CadastroCulturas"
         component={CadastroCultura}
         options={{
           title: "Cadastro de cultura",
           drawerLabel: " ",
         }}
-      />
-
+      /> */}
       {/* <Drawer.Screen
         name="Home"
         component={StackRoute}
         options={{
-          drawerIcon: ({ color, size }) => (
-            <Feather name="home" color={color} size={size} />
-          ),
-          drawerLabel: "Início",
+          drawerLabel: " ",
+          
         }}
       /> */}
     </Drawer.Navigator>
