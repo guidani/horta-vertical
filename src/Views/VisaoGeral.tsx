@@ -16,12 +16,14 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
         mode="elevated"
         onPress={() => navigation.navigate("SaudeDasCulturas")}
         buttonColor="#7CD8A4"
-        textColor="#fff"
+        textColor="#000"
         icon={({ color, size }) => {
           return <Feather name={"arrow-right"} color={color} size={size} />;
         }}
         style={{
           borderRadius: 4,
+          height: 64,
+          justifyContent: "center",
         }}
         contentStyle={{
           flexDirection: "row-reverse",

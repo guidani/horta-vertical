@@ -2,14 +2,7 @@ import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { FAB, Text, TextInput } from "react-native-paper";
-export default function CadastroCultura({
-  navigation,
-  route,
-}: {
-  navigation: any;
-  route: any;
-}) {
-  const { itemId } = route.params;
+export default function CadastroCultura({ navigation }: { navigation: any }) {
   const [lumenMin, setLumenMin] = React.useState<string>();
   const [lumenMax, setLumenMax] = React.useState<string>();
   const [humidadeMin, setHumidadeMin] = React.useState<string>();
@@ -29,8 +22,6 @@ export default function CadastroCultura({
   }, []);
   return (
     <View style={styles.container}>
-      <Text variant="bodySmall">EditarCultura</Text>
-      <Text variant="bodyLarge">{itemId}</Text>
       <TextInput label={"Nome"} />
       <View>
         <Text variant="labelLarge">Luminosidade (L)</Text>

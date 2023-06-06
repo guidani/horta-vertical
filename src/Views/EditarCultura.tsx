@@ -1,7 +1,14 @@
 import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { FAB, Text, TextInput } from "react-native-paper";
+import {
+  Button,
+  FAB,
+  Modal,
+  Portal,
+  Text,
+  TextInput,
+} from "react-native-paper";
 export default function EditarCultura({
   navigation,
   route,
@@ -21,6 +28,12 @@ export default function EditarCultura({
   const [tempMin, setTempMin] = React.useState<string | undefined>(undefined);
   const [tempMax, setTempMax] = React.useState<string | undefined>(undefined);
 
+  const [visible, setVisible] = React.useState(false);
+
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const containerStyle = { backgroundColor: "white", padding: 20, margin: 8 };
+
   React.useEffect(() => {
     // Carregar os dados do banco
     setLumenMin("0");
@@ -33,8 +46,6 @@ export default function EditarCultura({
   }, []);
   return (
     <View style={styles.container}>
-      <Text variant="bodySmall">EditarCultura</Text>
-      <Text variant="bodyLarge">{itemId}</Text>
       <TextInput label={"Nome"} />
       <View>
         <Text variant="labelLarge">Luminosidade (L)</Text>
@@ -88,16 +99,55 @@ export default function EditarCultura({
             value={tempMax}
           />
         </View>
+        <Portal>
+          <Modal
+            visible={visible}
+            onDismiss={hideModal}
+            contentContainerStyle={containerStyle}
+          >
+            <Text>Tem certeza que deseja excluir a Cultura?</Text>
+            <Text>{itemId}</Text>
+            {/* TODO */}
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Button
+                mode="outlined"
+                onPress={() => console.log("Deletado")}
+                textColor="#000"
+              >
+                SIM
+              </Button>
+              <Button
+                mode="contained"
+                onPress={() => hideModal()}
+                buttonColor="#328777"
+              >
+                NÃO
+              </Button>
+            </View>
+          </Modal>
+        </Portal>
       </View>
 
+      <FAB
+        onPress={() => {
+          console.log("Deletado!!!");
+          showModal();
+        }}
+        style={styles.fab_del}
+        icon={({ color, size }) => {
+          return <Feather name={"trash"} color={"#fff"} size={size} />;
+        }}
+      />
       <FAB
         onPress={() => {
           console.log("Salvo no banco de dados!!!");
           navigation.goBack();
         }}
-        style={styles.fab}
+        style={styles.fab_save}
         icon={({ color, size }) => {
-          return <Feather name={"save"} color={color} size={size} />;
+          return <Feather name={"save"} color={"#fff"} size={size} />;
         }}
       />
     </View>
@@ -105,13 +155,22 @@ export default function EditarCultura({
 }
 
 const styles = StyleSheet.create({
-  fab: {
+  fab_save: {
     position: "absolute",
     margin: 16,
     right: 0,
     bottom: 0,
+    backgroundColor: "#328777",
+  },
+  fab_del: {
+    position: "absolute",
+    margin: 16,
+    left: 0,
+    bottom: 0,
+    backgroundColor: "#FB6107",
   },
   container: {
+    marginTop: 8,
     flex: 1,
     backgroundColor: "#F6FFF4",
     gap: 4,
