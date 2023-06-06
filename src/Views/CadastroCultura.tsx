@@ -1,45 +1,120 @@
 import { Feather } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { FAB, TextInput } from "react-native-paper";
+import { StyleSheet, View } from "react-native";
+import { FAB, Text, TextInput } from "react-native-paper";
+export default function CadastroCultura({
+  navigation,
+  route,
+}: {
+  navigation: any;
+  route: any;
+}) {
+  const { itemId } = route.params;
+  const [lumenMin, setLumenMin] = React.useState<string | number | null>(null);
+  const [lumenMax, setLumenMax] = React.useState<string | number | null>(null);
+  const [humidadeMin, setHumidadeMin] = React.useState<string | number | null>(
+    null
+  );
+  const [humidadeMax, setHumidadeMax] = React.useState<string | number | null>(
+    null
+  );
+  const [tempMin, setTempMin] = React.useState<string | number | null>(null);
+  const [tempMax, setTempMax] = React.useState<string | number | null>(null);
 
-export default function CadastroCultura({ navigation }: { navigation: any }) {
-  const [text, setText] = React.useState("");
+  React.useEffect(() => {
+    // Alterar nos estados
+    // Salvar os dados no banco
+  }, []);
   return (
     <View style={styles.container}>
-      <Text>Cadastro Hortaliça</Text>
-      <TextInput
-        label=""
-        value={text}
-        style={styles.inputStyle}
-        onChangeText={(text) => setText(text)}
-      />
+      <Text variant="bodySmall">EditarCultura</Text>
+      <Text variant="bodyLarge">{itemId}</Text>
+      <TextInput label={"Nome"} />
+      <View>
+        <Text variant="labelLarge">Luminosidade (L)</Text>
+        <View style={{ flexDirection: "row", gap: 4 }}>
+          <TextInput
+            label={"Min"}
+            style={{ flex: 1 }}
+            keyboardType="numeric"
+            onChangeText={(text) => setLumenMin(text)}
+          />
+          <TextInput
+            label={"Máx"}
+            style={{ flex: 1 }}
+            keyboardType="numeric"
+            onChangeText={(text) => setLumenMax(text)}
+          />
+        </View>
+        <Text variant="labelLarge">Humidade (%)</Text>
+        <View style={{ flexDirection: "row", gap: 4 }}>
+          <TextInput
+            label={"Min"}
+            style={{ flex: 1 }}
+            keyboardType="numeric"
+            onChangeText={(text) => setHumidadeMin(text)}
+          />
+          <TextInput
+            label={"Máx"}
+            style={{ flex: 1 }}
+            keyboardType="numeric"
+            onChangeText={(text) => setHumidadeMax(text)}
+          />
+        </View>
+        <Text variant="labelLarge">Temperatura (ºC)</Text>
+        <View style={{ flexDirection: "row", gap: 4 }}>
+          <TextInput
+            label={"Min"}
+            style={{ flex: 1 }}
+            keyboardType="numeric"
+            onChangeText={(text) => setTempMin(text)}
+          />
+          <TextInput
+            label={"Máx"}
+            style={{ flex: 1 }}
+            keyboardType="numeric"
+            onChangeText={(text) => setTempMax(text)}
+          />
+        </View>
+      </View>
+
       <FAB
-        icon={({ color, size }) => {
-          return <Feather name={"settings"} color={"#fff"} size={size} />;
+        onPress={() => {
+          console.log("Salvo no banco de dados!!!");
+          navigation.goBack();
         }}
         style={styles.fab}
-        onPress={() => navigation.navigate("CadastroHorta")}
+        icon={({ color, size }) => {
+          return <Feather name={"save"} color={color} size={size} />;
+        }}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 8,
-  },
-  inputStyle: {
-    width: "100%",
-  },
   fab: {
     position: "absolute",
     margin: 16,
     right: 0,
     bottom: 0,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#F6FFF4",
+    gap: 4,
+    paddingHorizontal: 8,
+  },
+  headLineStyle: {
+    padding: 8,
+    backgroundColor: "#fff",
+    borderBottomWidth: 2,
+    borderBottomColor: "#ccc",
+  },
+  headerStyle: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });
