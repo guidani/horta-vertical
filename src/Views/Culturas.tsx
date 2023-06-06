@@ -2,7 +2,8 @@ import { Feather } from "@expo/vector-icons";
 import React from "react";
 
 import { FlatList, SafeAreaView, StyleSheet } from "react-native";
-import { Button, FAB, Text } from "react-native-paper";
+import { FAB, Text } from "react-native-paper";
+import BtnFull from "../components/BtnFull";
 
 const DATA = [
   {
@@ -26,29 +27,12 @@ export default function Culturas({ navigation }: { navigation: any }) {
       <FlatList
         data={DATA}
         renderItem={({ item }) => (
-          <Button
-            mode="elevated"
+          <BtnFull
+            label={item.title}
             onPress={() =>
               navigation.navigate("EditarCultura", { itemId: item.id })
             }
-            buttonColor="#7CD8A4"
-            textColor="#000"
-            icon={({ color, size }) => {
-              return <Feather name={"arrow-right"} color={color} size={size} />;
-            }}
-            style={{
-              borderRadius: 4,
-              height: 64,
-              justifyContent: "center",
-              marginBottom: 4,
-            }}
-            contentStyle={{
-              flexDirection: "row-reverse",
-              justifyContent: "space-between",
-            }}
-          >
-            <Text variant="headlineSmall">{item.title}</Text>
-          </Button>
+          />
         )}
         keyExtractor={(item) => item.id}
       />
@@ -79,17 +63,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6FFF4",
     gap: 4,
     paddingHorizontal: 8,
-  },
-  headLineStyle: {
-    padding: 8,
-    backgroundColor: "#fff",
-    borderBottomWidth: 2,
-    borderBottomColor: "#ccc",
-  },
-  headerStyle: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
   },
 });

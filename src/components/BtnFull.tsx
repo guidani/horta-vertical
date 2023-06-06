@@ -7,7 +7,7 @@ type Props = {
   onPress: () => void | undefined;
 };
 
-export default function BtnFull({ onPress, label }: Props) {
+export default function BtnFull({ onPress, label, ...props }: Props) {
   return (
     <Button
       mode="elevated"
@@ -19,12 +19,14 @@ export default function BtnFull({ onPress, label }: Props) {
       }}
       style={{
         borderRadius: 4,
+        marginBottom: 4,
       }}
       contentStyle={{
         flexDirection: "row-reverse",
         justifyContent: "space-between",
         alignItems: "center",
       }}
+      {...props}
     >
       <Text variant="bodyLarge">{label}</Text>
     </Button>
