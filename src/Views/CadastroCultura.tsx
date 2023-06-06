@@ -1,8 +1,9 @@
+import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { FAB, TextInput } from "react-native-paper";
 
-export default function CadastroHortalica({ navigation }: { navigation: any }) {
+export default function CadastroCultura({ navigation }: { navigation: any }) {
   const [text, setText] = React.useState("");
   return (
     <View style={styles.container}>
@@ -14,7 +15,9 @@ export default function CadastroHortalica({ navigation }: { navigation: any }) {
         onChangeText={(text) => setText(text)}
       />
       <FAB
-        icon="chevron-right"
+        icon={({ color, size }) => {
+          return <Feather name={"settings"} color={"#fff"} size={size} />;
+        }}
         style={styles.fab}
         onPress={() => navigation.navigate("CadastroHorta")}
       />

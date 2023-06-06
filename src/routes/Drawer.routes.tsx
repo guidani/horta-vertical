@@ -1,6 +1,8 @@
-import { Feather } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import StackRoute from "./Stack.routes";
+import CadastroCultura from "../Views/CadastroCultura";
+import Culturas from "../Views/Culturas";
+import SaudeCulturas from "../Views/SaudeCulturas";
+import VisaoGeral from "../Views/VisaoGeral";
 
 const Drawer = createDrawerNavigator();
 
@@ -11,10 +13,42 @@ export default function DrawerRoutes() {
         title: "Minha Horta",
         drawerActiveTintColor: "#1C1B1F",
         drawerActiveBackgroundColor: "#A2CE86",
-        
       }}
     >
       <Drawer.Screen
+        name="VisaoGeral"
+        component={VisaoGeral}
+        options={{
+          title: "Visão Geral",
+          drawerLabel: "Início",
+        }}
+      />
+      <Drawer.Screen
+        name="Culturas"
+        component={Culturas}
+        options={{
+          title: "Culturas",
+          drawerLabel: "Culturas",
+        }}
+      />
+      <Drawer.Screen
+        name="SaudeCulturas"
+        component={SaudeCulturas}
+        options={{
+          title: "Saúde das culturas",
+          drawerLabel: "Saúde das culturas",
+        }}
+      />
+      <Drawer.Screen
+        name="CadastroCulturas"
+        component={CadastroCultura}
+        options={{
+          title: "Cadastro de cultura",
+          drawerLabel: " ",
+        }}
+      />
+
+      {/* <Drawer.Screen
         name="Home"
         component={StackRoute}
         options={{
@@ -23,7 +57,7 @@ export default function DrawerRoutes() {
           ),
           drawerLabel: "Início",
         }}
-      />
+      /> */}
     </Drawer.Navigator>
   );
 }

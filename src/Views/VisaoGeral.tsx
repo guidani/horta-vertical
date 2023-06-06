@@ -28,7 +28,7 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
           justifyContent: "space-between",
         }}
       >
-        Ver saude das culturas
+        Ver saúde das culturas
       </Button>
     </View>
   );
