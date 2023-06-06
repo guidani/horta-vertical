@@ -6,19 +6,19 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { Text } from "react-native-paper";
+import { List, Text } from "react-native-paper";
 
 const DATA = [
   {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    id: "1",
     title: "Cebolinha",
   },
   {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    id: "2",
     title: "Coentro",
   },
   {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    id: "3",
     title: "Hortelã",
   },
 ];
@@ -38,8 +38,13 @@ export default function Culturas({ navigation }: { navigation: any }) {
       <FlatList
         data={DATA}
         renderItem={({ item }) => (
-          <Pressable onPress={() => navigation.navigate("CadastroCulturas")}>
-            <Item title={item.title} />
+          <Pressable
+            onPress={() =>
+              navigation.navigate("CadastroCultura", { itemId: item.id })
+            }
+          >
+            {/* <Item title={item.title} /> */}
+            <List.Item title={item.title} />
           </Pressable>
         )}
         keyExtractor={(item) => item.id}

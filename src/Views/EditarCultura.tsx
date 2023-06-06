@@ -10,19 +10,25 @@ export default function EditarCultura({
   route: any;
 }) {
   const { itemId } = route.params;
-  const [lumenMin, setLumenMin] = React.useState<string | number | null>(null);
-  const [lumenMax, setLumenMax] = React.useState<string | number | null>(null);
-  const [humidadeMin, setHumidadeMin] = React.useState<string | number | null>(
-    null
+  const [lumenMin, setLumenMin] = React.useState<string | undefined>(undefined);
+  const [lumenMax, setLumenMax] = React.useState<string | undefined>(undefined);
+  const [humidadeMin, setHumidadeMin] = React.useState<string | undefined>(
+    undefined
   );
-  const [humidadeMax, setHumidadeMax] = React.useState<string | number | null>(
-    null
+  const [humidadeMax, setHumidadeMax] = React.useState<string | undefined>(
+    undefined
   );
-  const [tempMin, setTempMin] = React.useState<string | number | null>(null);
-  const [tempMax, setTempMax] = React.useState<string | number | null>(null);
+  const [tempMin, setTempMin] = React.useState<string | undefined>(undefined);
+  const [tempMax, setTempMax] = React.useState<string | undefined>(undefined);
 
   React.useEffect(() => {
     // Carregar os dados do banco
+    setLumenMin("0");
+    setLumenMax("0");
+    setHumidadeMin("0");
+    setHumidadeMax("0");
+    setTempMin("0");
+    setTempMax("0");
     // Alterar nos estados
   }, []);
   return (
@@ -38,12 +44,14 @@ export default function EditarCultura({
             style={{ flex: 1 }}
             keyboardType="numeric"
             onChangeText={(text) => setLumenMin(text)}
+            value={lumenMin}
           />
           <TextInput
             label={"Máx"}
             style={{ flex: 1 }}
             keyboardType="numeric"
             onChangeText={(text) => setLumenMax(text)}
+            value={lumenMax}
           />
         </View>
         <Text variant="labelLarge">Humidade (%)</Text>
@@ -53,12 +61,14 @@ export default function EditarCultura({
             style={{ flex: 1 }}
             keyboardType="numeric"
             onChangeText={(text) => setHumidadeMin(text)}
+            value={humidadeMin}
           />
           <TextInput
             label={"Máx"}
             style={{ flex: 1 }}
             keyboardType="numeric"
             onChangeText={(text) => setHumidadeMax(text)}
+            value={humidadeMax}
           />
         </View>
         <Text variant="labelLarge">Temperatura (ºC)</Text>
@@ -68,12 +78,14 @@ export default function EditarCultura({
             style={{ flex: 1 }}
             keyboardType="numeric"
             onChangeText={(text) => setTempMin(text)}
+            value={tempMin}
           />
           <TextInput
             label={"Máx"}
             style={{ flex: 1 }}
             keyboardType="numeric"
             onChangeText={(text) => setTempMax(text)}
+            value={tempMax}
           />
         </View>
       </View>

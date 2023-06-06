@@ -10,19 +10,21 @@ export default function CadastroCultura({
   route: any;
 }) {
   const { itemId } = route.params;
-  const [lumenMin, setLumenMin] = React.useState<string | number | null>(null);
-  const [lumenMax, setLumenMax] = React.useState<string | number | null>(null);
-  const [humidadeMin, setHumidadeMin] = React.useState<string | number | null>(
-    null
-  );
-  const [humidadeMax, setHumidadeMax] = React.useState<string | number | null>(
-    null
-  );
-  const [tempMin, setTempMin] = React.useState<string | number | null>(null);
-  const [tempMax, setTempMax] = React.useState<string | number | null>(null);
+  const [lumenMin, setLumenMin] = React.useState<string>();
+  const [lumenMax, setLumenMax] = React.useState<string>();
+  const [humidadeMin, setHumidadeMin] = React.useState<string>();
+  const [humidadeMax, setHumidadeMax] = React.useState<string>();
+  const [tempMin, setTempMin] = React.useState<string>();
+  const [tempMax, setTempMax] = React.useState<string>();
 
   React.useEffect(() => {
     // Alterar nos estados
+    setLumenMin("0");
+    setLumenMax("0");
+    setHumidadeMin("0");
+    setHumidadeMax("0");
+    setTempMin("0");
+    setTempMax("0");
     // Salvar os dados no banco
   }, []);
   return (
