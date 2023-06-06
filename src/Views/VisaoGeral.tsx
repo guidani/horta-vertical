@@ -1,7 +1,6 @@
-import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Button } from "react-native-paper";
+import BtnFull from "../components/BtnFull";
 import DisplayData from "../components/DisplayData";
 
 export default function VisaoGeral({ navigation }: { navigation: any }) {
@@ -12,26 +11,14 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
         <DisplayData label="Temperatura" data={99} iconName={"sun"} />
         <DisplayData label="Humidade" data={99} iconName={"cloud"} />
       </View>
-      <Button
-        mode="elevated"
+      <BtnFull
+        label="Ver culturas"
+        onPress={() => navigation.navigate("Culturas")}
+      />
+      <BtnFull
         onPress={() => navigation.navigate("SaudeDasCulturas")}
-        buttonColor="#7CD8A4"
-        textColor="#000"
-        icon={({ color, size }) => {
-          return <Feather name={"arrow-right"} color={color} size={size} />;
-        }}
-        style={{
-          borderRadius: 4,
-          height: 64,
-          justifyContent: "center",
-        }}
-        contentStyle={{
-          flexDirection: "row-reverse",
-          justifyContent: "space-between",
-        }}
-      >
-        Ver saúde das culturas
-      </Button>
+        label="Ver saúde das culturas"
+      />
     </View>
   );
 }
