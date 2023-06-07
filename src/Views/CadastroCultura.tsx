@@ -2,6 +2,7 @@ import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { FAB, Text, TextInput } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
 export default function CadastroCultura({ navigation }: { navigation: any }) {
   const [lumenMin, setLumenMin] = React.useState<string>();
   const [lumenMax, setLumenMax] = React.useState<string>();
@@ -21,6 +22,7 @@ export default function CadastroCultura({ navigation }: { navigation: any }) {
     // Salvar os dados no banco
   }, []);
   return (
+    <SafeAreaView style={{flex: 1}}>
     <View style={styles.container}>
       <TextInput label={"Nome"} />
       <View>
@@ -82,6 +84,7 @@ export default function CadastroCultura({ navigation }: { navigation: any }) {
         }}
       />
     </View>
+    </SafeAreaView>
   );
 }
 

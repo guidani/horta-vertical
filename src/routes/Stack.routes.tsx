@@ -12,9 +12,6 @@ export default function StackRoute() {
   return (
     <Stack.Navigator
       initialRouteName="VisaoGeral"
-      // screenOptions={{
-      //   header: () => null,
-      // }}
     >
       <Stack.Screen
         name="VisaoGeral"

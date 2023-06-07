@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { FAB, TextInput } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useCadastroStore } from "../stores/useCadastroStore";
 
 export default function CadastroProprietario({
   navigation,
@@ -8,21 +10,25 @@ export default function CadastroProprietario({
   navigation: any;
 }) {
   const [text, setText] = React.useState("");
+  const { update_name } = useCadastroStore();
   return (
-    <View style={styles.container}>
-      <Text>Cadastro do proprietario</Text>
-      <TextInput
-        label="Seu nome"
-        value={text}
-        style={styles.inputStyle}
-        onChangeText={(text) => setText(text)}
-      />
-      <FAB
-        icon="chevron-right"
-        style={styles.fab}
-        onPress={() => navigation.navigate("CadastroHorta")}
-      />
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <Text>Cadastro do proprietario</Text>
+        <TextInput
+          label="Seu nome"
+          value={text}
+          style={styles.inputStyle}
+          onChangeText={(text) => setText(text)}
+        />
+        <FAB
+          icon="chevron-right"
+          style={styles.fab}
+          // onPress={() => navigation.navigate("CadastroHorta")}
+          onPress={() => update_name(text)}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 

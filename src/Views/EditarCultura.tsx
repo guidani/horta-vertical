@@ -9,6 +9,7 @@ import {
   Text,
   TextInput,
 } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
 export default function EditarCultura({
   navigation,
   route,
@@ -46,6 +47,7 @@ export default function EditarCultura({
     // Alterar nos estados
   }, []);
   return (
+    <SafeAreaView style={{flex: 1}}>
     <View style={styles.container}>
       <TextInput label={"Nome"} />
       <View>
@@ -152,6 +154,7 @@ export default function EditarCultura({
         }}
       />
     </View>
+    </SafeAreaView>
   );
 }
 
