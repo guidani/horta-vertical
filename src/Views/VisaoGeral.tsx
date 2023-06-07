@@ -1,12 +1,18 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Divider } from "react-native-paper";
+import { Divider, Text } from "react-native-paper";
 import BtnFull from "../components/BtnFull";
 import DisplayData from "../components/DisplayData";
+import { useCadastroStore } from "../stores/useCadastroStore";
 
 export default function VisaoGeral({ navigation }: { navigation: any }) {
+  const { nome, hortas } = useCadastroStore((state) => state.cadastro);
+  const total_de_hortas = hortas.length;
   return (
     <View style={styles.container}>
+      <Text variant="headlineSmall">Olá, {nome}</Text>
+      <Text variant="headlineSmall">Total de hortas, {total_de_hortas}</Text>
+
       <View style={styles.displayDataSection}>
         <DisplayData label="Luminosidade" data={99} iconName={"thermometer"} />
         <DisplayData label="Temperatura" data={99} iconName={"sun"} />
