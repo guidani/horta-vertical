@@ -1,15 +1,25 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { FAB, TextInput } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useAuthStore } from "../../stores/useAuthStore";
+import { useCadastroStore } from "../../stores/useCadastroStore";
 
-export default function CadastroHorta({ navigation }: { navigation: any }) {
+export default function CadastroProprietario({
+  navigation,
+}: {
+  navigation: any;
+}) {
   const [text, setText] = React.useState("");
+  const { update_name } = useCadastroStore();
+  const { isAuthenticated, updateIsAuthenticated } = useAuthStore();
+
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
+        <Text>Cadastro do proprietario</Text>
         <TextInput
-          label="Dê um nome legal para sua nova horta"
+          label="Seu nome"
           value={text}
           style={styles.inputStyle}
           onChangeText={(text) => setText(text)}
@@ -17,7 +27,11 @@ export default function CadastroHorta({ navigation }: { navigation: any }) {
         <FAB
           icon="chevron-right"
           style={styles.fab}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => {
+            update_name(text);
+            updateIsAuthenticated();
+          }}
+          // onPress={() => update_name(text)}
         />
       </View>
     </SafeAreaView>

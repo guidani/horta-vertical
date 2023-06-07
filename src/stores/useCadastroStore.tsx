@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
+import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import { Cultura } from "../domain/entities/cutura";
 import { Usuario } from "../domain/entities/usuario";
 
@@ -37,6 +37,7 @@ export const useCadastroStore = create<CadastroState>()(
       }),
       {
         name: "cadastro-storage",
+        storage: createJSONStorage(() => localStorage),
       }
     )
   )

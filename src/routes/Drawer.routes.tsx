@@ -39,22 +39,6 @@ export default function DrawerRoutes() {
           drawerLabel: "Saúde das culturas",
         }}
       />
-      {/* <Drawer.Screen
-        name="CadastroCulturas"
-        component={CadastroCultura}
-        options={{
-          title: "Cadastro de cultura",
-          drawerLabel: " ",
-        }}
-      /> */}
-      {/* <Drawer.Screen
-        name="Home"
-        component={StackRoute}
-        options={{
-          drawerLabel: " ",
-          
-        }}
-      /> */}
     </Drawer.Navigator>
   );
 }

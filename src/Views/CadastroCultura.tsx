@@ -22,68 +22,68 @@ export default function CadastroCultura({ navigation }: { navigation: any }) {
     // Salvar os dados no banco
   }, []);
   return (
-    <SafeAreaView style={{flex: 1}}>
-    <View style={styles.container}>
-      <TextInput label={"Nome"} />
-      <View>
-        <Text variant="labelLarge">Luminosidade (L)</Text>
-        <View style={{ flexDirection: "row", gap: 4 }}>
-          <TextInput
-            label={"Min"}
-            style={{ flex: 1 }}
-            keyboardType="numeric"
-            onChangeText={(text) => setLumenMin(text)}
-          />
-          <TextInput
-            label={"Máx"}
-            style={{ flex: 1 }}
-            keyboardType="numeric"
-            onChangeText={(text) => setLumenMax(text)}
-          />
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <TextInput label={"Nome"} />
+        <View>
+          <Text variant="labelLarge">Luminosidade (L)</Text>
+          <View style={{ flexDirection: "row", gap: 4 }}>
+            <TextInput
+              label={"Min"}
+              style={{ flex: 1 }}
+              keyboardType="numeric"
+              onChangeText={(text) => setLumenMin(text)}
+            />
+            <TextInput
+              label={"Máx"}
+              style={{ flex: 1 }}
+              keyboardType="numeric"
+              onChangeText={(text) => setLumenMax(text)}
+            />
+          </View>
+          <Text variant="labelLarge">Humidade (%)</Text>
+          <View style={{ flexDirection: "row", gap: 4 }}>
+            <TextInput
+              label={"Min"}
+              style={{ flex: 1 }}
+              keyboardType="numeric"
+              onChangeText={(text) => setHumidadeMin(text)}
+            />
+            <TextInput
+              label={"Máx"}
+              style={{ flex: 1 }}
+              keyboardType="numeric"
+              onChangeText={(text) => setHumidadeMax(text)}
+            />
+          </View>
+          <Text variant="labelLarge">Temperatura (ºC)</Text>
+          <View style={{ flexDirection: "row", gap: 4 }}>
+            <TextInput
+              label={"Min"}
+              style={{ flex: 1 }}
+              keyboardType="numeric"
+              onChangeText={(text) => setTempMin(text)}
+            />
+            <TextInput
+              label={"Máx"}
+              style={{ flex: 1 }}
+              keyboardType="numeric"
+              onChangeText={(text) => setTempMax(text)}
+            />
+          </View>
         </View>
-        <Text variant="labelLarge">Humidade (%)</Text>
-        <View style={{ flexDirection: "row", gap: 4 }}>
-          <TextInput
-            label={"Min"}
-            style={{ flex: 1 }}
-            keyboardType="numeric"
-            onChangeText={(text) => setHumidadeMin(text)}
-          />
-          <TextInput
-            label={"Máx"}
-            style={{ flex: 1 }}
-            keyboardType="numeric"
-            onChangeText={(text) => setHumidadeMax(text)}
-          />
-        </View>
-        <Text variant="labelLarge">Temperatura (ºC)</Text>
-        <View style={{ flexDirection: "row", gap: 4 }}>
-          <TextInput
-            label={"Min"}
-            style={{ flex: 1 }}
-            keyboardType="numeric"
-            onChangeText={(text) => setTempMin(text)}
-          />
-          <TextInput
-            label={"Máx"}
-            style={{ flex: 1 }}
-            keyboardType="numeric"
-            onChangeText={(text) => setTempMax(text)}
-          />
-        </View>
-      </View>
 
-      <FAB
-        onPress={() => {
-          console.log("Salvo no banco de dados!!!");
-          navigation.goBack();
-        }}
-        style={styles.fab}
-        icon={({ color, size }) => {
-          return <Feather name={"save"} color={color} size={size} />;
-        }}
-      />
-    </View>
+        <FAB
+          onPress={() => {
+            console.log("Salvo no banco de dados!!!");
+            navigation.goBack();
+          }}
+          style={styles.fab}
+          icon={({ color, size }) => {
+            return <Feather name={"save"} color={color} size={size} />;
+          }}
+        />
+      </View>
     </SafeAreaView>
   );
 }

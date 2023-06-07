@@ -2,18 +2,18 @@ import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import UIProvider from "../Providers/UIProvider";
-import { useCadastroStore } from "../stores/useCadastroStore";
+import { useAuthStore } from "../stores/useAuthStore";
 import AuthRoutes from "./Auth.routes";
 import StackRoute from "./Stack.routes";
 
 export default function Routes() {
-  const { nome } = useCadastroStore((state) => state.cadastro);
+  const authenticated = useAuthStore((state) => state.isAuthenticated);
   return (
     <NavigationContainer>
       <SafeAreaProvider>
         <UIProvider>
           {/* <DrawerRoutes /> */}
-          {nome === "" ? <AuthRoutes /> : <StackRoute />}
+          {!authenticated ? <AuthRoutes /> : <StackRoute />}
         </UIProvider>
       </SafeAreaProvider>
     </NavigationContainer>

@@ -5,14 +5,13 @@ import Culturas from "../Views/Culturas";
 import EditarCultura from "../Views/EditarCultura";
 import SaudeCulturas from "../Views/SaudeCulturas";
 import VisaoGeral from "../Views/VisaoGeral";
+import CadastroHorta from "../Views/auth/CadastroHorta";
 
 const Stack = createNativeStackNavigator();
 
 export default function StackRoute() {
   return (
-    <Stack.Navigator
-      initialRouteName="VisaoGeral"
-    >
+    <Stack.Navigator initialRouteName="VisaoGeral">
       <Stack.Screen
         name="VisaoGeral"
         component={VisaoGeral}
@@ -51,6 +50,14 @@ export default function StackRoute() {
         component={Culturas}
         options={{
           headerTitle: "Culturas",
+          headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
+        name="CadastroHorta"
+        component={CadastroHorta}
+        options={{
+          headerTitle: "Cadastro Cultura",
           headerTitleAlign: "center",
         }}
       />

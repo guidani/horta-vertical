@@ -47,113 +47,116 @@ export default function EditarCultura({
     // Alterar nos estados
   }, []);
   return (
-    <SafeAreaView style={{flex: 1}}>
-    <View style={styles.container}>
-      <TextInput label={"Nome"} />
-      <View>
-        <Text variant="labelLarge">Luminosidade (L)</Text>
-        <View style={{ flexDirection: "row", gap: 4 }}>
-          <TextInput
-            label={"Min"}
-            style={{ flex: 1 }}
-            keyboardType="numeric"
-            onChangeText={(text) => setLumenMin(text)}
-            value={lumenMin}
-          />
-          <TextInput
-            label={"Máx"}
-            style={{ flex: 1 }}
-            keyboardType="numeric"
-            onChangeText={(text) => setLumenMax(text)}
-            value={lumenMax}
-          />
-        </View>
-        <Text variant="labelLarge">Humidade (%)</Text>
-        <View style={{ flexDirection: "row", gap: 4 }}>
-          <TextInput
-            label={"Min"}
-            style={{ flex: 1 }}
-            keyboardType="numeric"
-            onChangeText={(text) => setHumidadeMin(text)}
-            value={humidadeMin}
-          />
-          <TextInput
-            label={"Máx"}
-            style={{ flex: 1 }}
-            keyboardType="numeric"
-            onChangeText={(text) => setHumidadeMax(text)}
-            value={humidadeMax}
-          />
-        </View>
-        <Text variant="labelLarge">Temperatura (ºC)</Text>
-        <View style={{ flexDirection: "row", gap: 4 }}>
-          <TextInput
-            label={"Min"}
-            style={{ flex: 1 }}
-            keyboardType="numeric"
-            onChangeText={(text) => setTempMin(text)}
-            value={tempMin}
-          />
-          <TextInput
-            label={"Máx"}
-            style={{ flex: 1 }}
-            keyboardType="numeric"
-            onChangeText={(text) => setTempMax(text)}
-            value={tempMax}
-          />
-        </View>
-        <Portal>
-          <Modal
-            visible={visible}
-            onDismiss={hideModal}
-            contentContainerStyle={containerStyle}
-          >
-            <Text>Tem certeza que deseja excluir a Cultura?</Text>
-            <Text>{itemId}</Text>
-            {/* TODO */}
-            <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <TextInput label={"Nome"} />
+        <View>
+          <Text variant="labelLarge">Luminosidade (L)</Text>
+          <View style={{ flexDirection: "row", gap: 4 }}>
+            <TextInput
+              label={"Min"}
+              style={{ flex: 1 }}
+              keyboardType="numeric"
+              onChangeText={(text) => setLumenMin(text)}
+              value={lumenMin}
+            />
+            <TextInput
+              label={"Máx"}
+              style={{ flex: 1 }}
+              keyboardType="numeric"
+              onChangeText={(text) => setLumenMax(text)}
+              value={lumenMax}
+            />
+          </View>
+          <Text variant="labelLarge">Humidade (%)</Text>
+          <View style={{ flexDirection: "row", gap: 4 }}>
+            <TextInput
+              label={"Min"}
+              style={{ flex: 1 }}
+              keyboardType="numeric"
+              onChangeText={(text) => setHumidadeMin(text)}
+              value={humidadeMin}
+            />
+            <TextInput
+              label={"Máx"}
+              style={{ flex: 1 }}
+              keyboardType="numeric"
+              onChangeText={(text) => setHumidadeMax(text)}
+              value={humidadeMax}
+            />
+          </View>
+          <Text variant="labelLarge">Temperatura (ºC)</Text>
+          <View style={{ flexDirection: "row", gap: 4 }}>
+            <TextInput
+              label={"Min"}
+              style={{ flex: 1 }}
+              keyboardType="numeric"
+              onChangeText={(text) => setTempMin(text)}
+              value={tempMin}
+            />
+            <TextInput
+              label={"Máx"}
+              style={{ flex: 1 }}
+              keyboardType="numeric"
+              onChangeText={(text) => setTempMax(text)}
+              value={tempMax}
+            />
+          </View>
+          <Portal>
+            <Modal
+              visible={visible}
+              onDismiss={hideModal}
+              contentContainerStyle={containerStyle}
             >
-              <Button
-                mode="outlined"
-                onPress={() => console.log("Deletado")}
-                textColor="#000"
+              <Text>Tem certeza que deseja excluir a Cultura?</Text>
+              <Text>{itemId}</Text>
+              {/* TODO */}
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
               >
-                SIM
-              </Button>
-              <Button
-                mode="contained"
-                onPress={() => hideModal()}
-                buttonColor="#328777"
-              >
-                NÃO
-              </Button>
-            </View>
-          </Modal>
-        </Portal>
-      </View>
+                <Button
+                  mode="outlined"
+                  onPress={() => console.log("Deletado")}
+                  textColor="#000"
+                >
+                  SIM
+                </Button>
+                <Button
+                  mode="contained"
+                  onPress={() => hideModal()}
+                  buttonColor="#328777"
+                >
+                  NÃO
+                </Button>
+              </View>
+            </Modal>
+          </Portal>
+        </View>
 
-      <FAB
-        onPress={() => {
-          console.log("Deletado!!!");
-          showModal();
-        }}
-        style={styles.fab_del}
-        icon={({ color, size }) => {
-          return <Feather name={"trash"} color={"#fff"} size={size} />;
-        }}
-      />
-      <FAB
-        onPress={() => {
-          console.log("Salvo no banco de dados!!!");
-          navigation.goBack();
-        }}
-        style={styles.fab_save}
-        icon={({ color, size }) => {
-          return <Feather name={"save"} color={"#fff"} size={size} />;
-        }}
-      />
-    </View>
+        <FAB
+          onPress={() => {
+            console.log("Deletado!!!");
+            showModal();
+          }}
+          style={styles.fab_del}
+          icon={({ color, size }) => {
+            return <Feather name={"trash"} color={"#fff"} size={size} />;
+          }}
+        />
+        <FAB
+          onPress={() => {
+            console.log("Salvo no banco de dados!!!");
+            navigation.goBack();
+          }}
+          style={styles.fab_save}
+          icon={({ color, size }) => {
+            return <Feather name={"save"} color={"#fff"} size={size} />;
+          }}
+        />
+      </View>
     </SafeAreaView>
   );
 }
