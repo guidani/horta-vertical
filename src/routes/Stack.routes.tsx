@@ -57,35 +57,6 @@ export default function StackRoute() {
           headerTitleAlign: "center",
         }}
       />
-      {/* <Stack.Screen
-        name="CadastroProprietario"
-        component={CadastroProprietario}
-        options={{
-          headerTitle: "Cadastro Proprietário(a)",
-        }}
-      />
-      <Stack.Screen
-        name="CadastroHorta"
-        component={CadastroHorta}
-        options={{
-          headerTitle: "Cadastro da horta",
-        }}
-      />
-      <Stack.Screen
-        name="CadastroHortalica"
-        component={CadastroCultura}
-        options={{
-          headerTitle: "Cadastro da hortaliça",
-        }}
-      />
-
-      <Stack.Screen
-        name="SaudeCulturas"
-        component={SaudeCulturas}
-        options={{
-          headerTitle: "Saúde das culturas",
-        }}
-      /> */}
     </Stack.Navigator>
   );
 }

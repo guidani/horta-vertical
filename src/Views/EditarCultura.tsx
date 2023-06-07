@@ -16,6 +16,7 @@ export default function EditarCultura({
   navigation: any;
   route: any;
 }) {
+  // TODO: Criar custom hooks
   const { itemId } = route.params;
   const [lumenMin, setLumenMin] = React.useState<string | undefined>(undefined);
   const [lumenMax, setLumenMax] = React.useState<string | undefined>(undefined);

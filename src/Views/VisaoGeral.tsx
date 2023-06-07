@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F6FFF4",
-
     paddingHorizontal: 8,
   },
   displayDataSection: {
