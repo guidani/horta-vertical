@@ -16,16 +16,16 @@ export const useCadastroStore = create<CadastroState>()(
           nome: "",
           hortas: [],
         },
-          adicionar_horta: (cultura: Cultura) => 
-            set((state) => ({
-               cadastro: {
-                ...state.cadastro,
-                hortas: [
-                  ...state.cadastro.hortas, 
-                  {culturas: [cultura], nome: "new-"}
-                ]
-               }
-              }))
+        adicionar_horta: (cultura: Cultura) =>
+          set((state) => ({
+            cadastro: {
+              ...state.cadastro,
+              hortas: [
+                ...state.cadastro.hortas,
+                { culturas: [cultura], nome: "new-" },
+              ],
+            },
+          })),
       }),
       {
         name: "cadastro-storage",

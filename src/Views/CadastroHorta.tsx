@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { FAB, TextInput } from "react-native-paper";
 
-export default function CadastroHorta({navigation}: {navigation: any}) {
+export default function CadastroHorta({ navigation }: { navigation: any }) {
   const [text, setText] = React.useState("");
   return (
     <View style={styles.container}>
@@ -15,7 +15,7 @@ export default function CadastroHorta({navigation}: {navigation: any}) {
       <FAB
         icon="chevron-right"
         style={styles.fab}
-        onPress={() => navigation.navigate("CadastroProprietario")}
+        onPress={() => navigation.navigate("VisaoGeral")}
       />
     </View>
   );
