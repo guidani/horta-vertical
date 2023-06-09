@@ -5,7 +5,7 @@ import { Avatar } from "react-native-paper";
 interface Props {
   label?: string;
   iconName: any;
-  data?: string | number | null;
+  data?: string | number;
 }
 
 export default function DisplayData({ iconName, label, data }: Props) {
@@ -28,6 +28,7 @@ export default function DisplayData({ iconName, label, data }: Props) {
 export const styles = StyleSheet.create({
   container: {
     display: "flex",
+    flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#7CD8A4",

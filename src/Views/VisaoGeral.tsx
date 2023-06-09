@@ -39,12 +39,10 @@ const styles = StyleSheet.create({
   },
   displayDataSection: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     flexWrap: "wrap",
     gap: 4,
     backgroundColor: "#F6FFF4",
-    paddingHorizontal: 8,
-    marginVertical: 8,
   },
   inputStyle: {
     width: "100%",
