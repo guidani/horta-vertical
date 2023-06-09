@@ -12,8 +12,6 @@ export default function BtnFull({ onPress, label, ...props }: Props) {
     <Button
       mode="elevated"
       onPress={onPress}
-      buttonColor="#7CD8A4"
-      textColor="#000"
       icon={({ color, size }) => {
         return <Feather name={"arrow-right"} color={color} size={size} />;
       }}

@@ -1,6 +1,6 @@
 import { Feather } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
-import { Avatar } from "react-native-paper";
+import { Avatar, useTheme } from "react-native-paper";
 
 interface Props {
   label?: string;
@@ -9,15 +9,22 @@ interface Props {
 }
 
 export default function DisplayData({ iconName, label, data }: Props) {
+  const theme = useTheme();
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: theme.colors.surfaceVariant },
+      ]}
+    >
       <Text style={styles.labelStyle}>{label}</Text>
       <Avatar.Icon
         size={54}
         icon={({ color, size }) => {
-          return <Feather name={iconName} color={color} size={size} />;
+          return (
+            <Feather name={iconName} color={theme.colors.primary} size={size} />
+          );
         }}
-        color="#000"
         style={{ backgroundColor: "transparent" }}
       />
       <Text style={styles.dataStyle}>{data}</Text>

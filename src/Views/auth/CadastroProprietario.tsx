@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { FAB, TextInput } from "react-native-paper";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet, ToastAndroid, View } from "react-native";
+import { FAB, Text, TextInput } from "react-native-paper";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { useCadastroStore } from "../../stores/useCadastroStore";
 
@@ -13,28 +12,34 @@ export default function CadastroProprietario({
   const [text, setText] = React.useState("");
   const { update_name } = useCadastroStore();
   const { isAuthenticated, updateIsAuthenticated } = useAuthStore();
-
+  function showToast() {
+    ToastAndroid.show("Por favor, digite seu nome!", ToastAndroid.SHORT);
+  }
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={styles.container}>
-        <Text>Cadastro do proprietario</Text>
-        <TextInput
-          label="Seu nome"
-          value={text}
-          style={styles.inputStyle}
-          onChangeText={(text) => setText(text)}
-        />
-        <FAB
-          icon="chevron-right"
-          style={styles.fab}
-          onPress={() => {
-            update_name(text);
-            updateIsAuthenticated();
-          }}
-          // onPress={() => update_name(text)}
-        />
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text variant="headlineLarge" style={styles.headerStyle}>
+        Cadastro,
+      </Text>
+      <TextInput
+        label="Seu nome"
+        maxLength={24}
+        value={text}
+        style={styles.inputStyle}
+        onChangeText={(text) => setText(text)}
+      />
+      <FAB
+        icon="chevron-right"
+        style={styles.fab}
+        onPress={() => {
+          if (!text) {
+            showToast();
+            return;
+          }
+          update_name(text);
+          updateIsAuthenticated();
+        }}
+      />
+    </View>
   );
 }
 
@@ -42,9 +47,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
     paddingHorizontal: 8,
+    justifyContent: "center",
+  },
+  headerStyle: {
+    marginBottom: 24,
   },
   inputStyle: {
     width: "100%",
