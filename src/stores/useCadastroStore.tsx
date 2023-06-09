@@ -5,7 +5,7 @@ import { Usuario } from "../domain/entities/usuario";
 
 interface CadastroState {
   cadastro: Usuario;
-  adicionar_horta: (cultura: Cultura) => void;
+  adicionar_cultura: (cultura: Cultura) => void;
   update_name: (novoNome: string) => void;
 }
 
@@ -17,7 +17,7 @@ export const useCadastroStore = create<CadastroState>()(
           nome: "",
           hortas: [],
         },
-        adicionar_horta: (cultura: Cultura) =>
+        adicionar_cultura: (cultura: Cultura) =>
           set((state) => ({
             cadastro: {
               ...state.cadastro,

@@ -1,11 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import CadastroCultura from "../Views/CadastroCultura";
+import CadastroHorta from "../Views/CadastroHorta";
 import Culturas from "../Views/Culturas";
 import EditarCultura from "../Views/EditarCultura";
 import SaudeCulturas from "../Views/SaudeCulturas";
 import VisaoGeral from "../Views/VisaoGeral";
-import CadastroHorta from "../Views/auth/CadastroHorta";
 
 const Stack = createNativeStackNavigator();
 
@@ -36,7 +36,6 @@ export default function StackRoute() {
           headerTitleAlign: "center",
         }}
       />
-
       <Stack.Screen
         name="EditarCultura"
         component={EditarCultura}
@@ -57,7 +56,7 @@ export default function StackRoute() {
         name="CadastroHorta"
         component={CadastroHorta}
         options={{
-          headerTitle: "Cadastro Cultura",
+          headerTitle: "Cadastro Horta",
           headerTitleAlign: "center",
         }}
       />
