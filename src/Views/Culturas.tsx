@@ -1,9 +1,10 @@
 import { Feather } from "@expo/vector-icons";
 import React from "react";
 
-import { FlatList, SafeAreaView, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { FAB, Text } from "react-native-paper";
 import BtnFull from "../components/BtnFull";
+import { useCadastroStore } from "../stores/useCadastroStore";
 
 const DATA = [
   {
@@ -21,14 +22,18 @@ const DATA = [
 ];
 
 export default function Culturas({ navigation }: { navigation: any }) {
+  const { cadastro } = useCadastroStore();
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Text variant="headlineSmall">Culturas da Horta</Text>
+      {cadastro.culturas?.map((cultura, index) => {
+        return <Text key={cultura.id}>{cultura.nome}</Text>;
+      })}
       <FlatList
-        data={DATA}
-        renderItem={({ item }) => (
+        data={cadastro.culturas}
+        renderItem={({ item, index }) => (
           <BtnFull
-            label={item.title}
+            label={item.nome}
             onPress={() =>
               navigation.navigate("EditarCultura", { itemId: item.id })
             }
@@ -46,7 +51,7 @@ export default function Culturas({ navigation }: { navigation: any }) {
           return <Feather name={"plus"} color={"#fff"} size={size} />;
         }}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 

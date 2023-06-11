@@ -14,10 +14,13 @@ export const useCadastroStore = create<CadastroState>()(
     persist(
       (set) => ({
         cadastro: {
+          id: Math.random().toString(),
           nome: "",
           culturas: [],
         },
         adicionar_cultura: async (cultura: Cultura) =>
+          // buscar dados no banco de dados e adicionar
+          // https://github.com/pmndrs/zustand#async-actions
           set((state) => ({
             cadastro: {
               ...state.cadastro,

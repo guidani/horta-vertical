@@ -77,6 +77,7 @@ export default function CadastroCultura({ navigation }: { navigation: any }) {
       <FAB
         onPress={() => {
           adicionar_cultura({
+            id: Math.random().toString(),
             nome: name,
             humidadeMaxima: humidadeMax,
             humidadeMinima: humidadeMin,

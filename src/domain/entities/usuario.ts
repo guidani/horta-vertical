@@ -1,7 +1,7 @@
 import { Cultura } from "./cutura";
-import { Horta } from "./horta";
 
 export type Usuario = {
+  id: string;
   nome: string;
   culturas?: Cultura[];
 };
