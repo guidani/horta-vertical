@@ -8,9 +8,9 @@ import DisplayData from "../components/DisplayData";
 import { useCadastroStore } from "../stores/useCadastroStore";
 
 export default function VisaoGeral({ navigation }: { navigation: any }) {
-  const { nome, hortas } = useCadastroStore((state) => state.cadastro);
-  const total_de_hortas = hortas?.length;
-  if (hortas?.length === 0) {
+  const { nome, culturas } = useCadastroStore((state) => state.cadastro);
+  const total_de_hortas = culturas?.length;
+  if (culturas?.length === 0) {
     return (
       <View
         style={[
@@ -19,13 +19,12 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
         ]}
       >
         <Text variant="bodyLarge">
-          Para começar você pode apertar no botão abaixo para criar uma nova
-          horta.
+          Para começar você pode apertar no botão abaixo para adicionar as
+          culturas.
         </Text>
         <FAB
           onPress={() => {
-            console.log("Salvo no banco de dados!!!");
-            navigation.navigate("CadastroHorta");
+            navigation.navigate("CadastroCultura");
           }}
           style={styles.fab_save}
           icon={({ color, size }) => {
@@ -37,8 +36,7 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
   }
   return (
     <View style={styles.container}>
-      <Text variant="headlineSmall">Olá, {nome}</Text>
-      <Text variant="headlineSmall">Total de hortas, {total_de_hortas}</Text>
+      <Text variant="headlineSmall" style={{marginVertical: 8}}>Olá, {nome}</Text>
 
       <View style={styles.displayDataSection}>
         <DisplayData label="Luminosidade" data={99} iconName={"thermometer"} />

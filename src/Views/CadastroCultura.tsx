@@ -2,13 +2,16 @@ import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { FAB, Text, TextInput } from "react-native-paper";
+import { useCadastroStore } from "../stores/useCadastroStore";
 export default function CadastroCultura({ navigation }: { navigation: any }) {
-  const [lumenMin, setLumenMin] = React.useState<string>();
-  const [lumenMax, setLumenMax] = React.useState<string>();
-  const [humidadeMin, setHumidadeMin] = React.useState<string>();
-  const [humidadeMax, setHumidadeMax] = React.useState<string>();
-  const [tempMin, setTempMin] = React.useState<string>();
-  const [tempMax, setTempMax] = React.useState<string>();
+  const { adicionar_cultura } = useCadastroStore();
+  const [name, setName] = React.useState<string>("");
+  const [lumenMin, setLumenMin] = React.useState<string | undefined>("");
+  const [lumenMax, setLumenMax] = React.useState<string | undefined>("");
+  const [humidadeMin, setHumidadeMin] = React.useState<string | undefined>("");
+  const [humidadeMax, setHumidadeMax] = React.useState<string | undefined>("");
+  const [tempMin, setTempMin] = React.useState<string | undefined>("");
+  const [tempMax, setTempMax] = React.useState<string | undefined>("");
 
   React.useEffect(() => {
     // Alterar nos estados
@@ -73,7 +76,15 @@ export default function CadastroCultura({ navigation }: { navigation: any }) {
 
       <FAB
         onPress={() => {
-          console.log("Salvo no banco de dados!!!");
+          adicionar_cultura({
+            nome: name,
+            humidadeMaxima: humidadeMax,
+            humidadeMinima: humidadeMin,
+            luminosidadeMaxima: lumenMax,
+            luminosidadeMinima: lumenMin,
+            temperaturaMaxima: tempMax,
+            temperaturaMinima: tempMin,
+          });
           navigation.goBack();
         }}
         style={styles.fab}
