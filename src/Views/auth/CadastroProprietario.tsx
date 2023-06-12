@@ -18,7 +18,7 @@ export default function CadastroProprietario({
   return (
     <View style={styles.container}>
       <Text variant="headlineLarge" style={styles.headerStyle}>
-        Cadastro,
+        Cadastro
       </Text>
       <TextInput
         label="Seu nome"
@@ -46,7 +46,7 @@ export default function CadastroProprietario({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#F6FFF4",
     paddingHorizontal: 8,
     justifyContent: "center",
   },
