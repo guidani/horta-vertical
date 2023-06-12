@@ -10,7 +10,7 @@ export default function Culturas({ navigation }: { navigation: any }) {
   return (
     <View style={styles.container}>
       <Text variant="headlineSmall">Culturas da Horta</Text>
-      
+
       <FlatList
         data={cadastro?.culturas}
         renderItem={({ item }) => (
@@ -24,11 +24,15 @@ export default function Culturas({ navigation }: { navigation: any }) {
         keyExtractor={(item) => item.id}
       />
       <FAB
+        disabled={cadastro.culturas.length >= 3 ? true : false}
         onPress={() => {
-          console.log("Salvo no banco de dados!!!");
           navigation.navigate("CadastroCultura");
         }}
-        style={styles.fab_save}
+        style={
+          cadastro.culturas.length >= 3
+            ? styles.fab_save_disabled
+            : styles.fab_save
+        }
         icon={({ size }) => {
           return <Feather name={"plus"} color={"#fff"} size={size} />;
         }}
@@ -44,6 +48,13 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor: "#328777",
+  },
+  fab_save_disabled: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "#ccc",
   },
   container: {
     flex: 1,
