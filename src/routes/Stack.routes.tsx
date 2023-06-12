@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import { useTheme } from "react-native-paper";
 import CadastroCultura from "../Views/CadastroCultura";
 import CadastroHorta from "../Views/CadastroHorta";
 import Culturas from "../Views/Culturas";
@@ -10,8 +11,16 @@ import VisaoGeral from "../Views/VisaoGeral";
 const Stack = createNativeStackNavigator();
 
 export default function StackRoute() {
+  const theme = useTheme();
   return (
-    <Stack.Navigator initialRouteName="VisaoGeral">
+    <Stack.Navigator
+      initialRouteName="VisaoGeral"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: `${theme.colors.background}`,
+        },
+      }}
+    >
       <Stack.Screen
         name="VisaoGeral"
         component={VisaoGeral}
