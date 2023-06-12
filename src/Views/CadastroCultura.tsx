@@ -25,7 +25,8 @@ export default function CadastroCultura({ navigation }: { navigation: any }) {
   }, []);
   return (
     <View style={styles.container}>
-      <TextInput label={"Nome"} />
+      <Text variant="labelLarge">Nome</Text>
+      <TextInput label={"Nome da cultura"} onChangeText={(text) => setName(text)}/>
       <View>
         <Text variant="labelLarge">Luminosidade (L)</Text>
         <View style={{ flexDirection: "row", gap: 4 }}>
@@ -35,6 +36,7 @@ export default function CadastroCultura({ navigation }: { navigation: any }) {
             keyboardType="numeric"
             onChangeText={(text) => setLumenMin(text)}
           />
+          <Text>{name}</Text>
           <TextInput
             label={"Máx"}
             style={{ flex: 1 }}

@@ -24,7 +24,7 @@ export const useCadastroStore = create<CadastroState>()(
           set((state) => ({
             cadastro: {
               ...state.cadastro,
-              culturas: [...(state.cadastro.culturas || []), cultura],
+              culturas: [...state.cadastro.culturas || [], cultura],
             },
           })),
         update_name: (novoNome: string) =>
@@ -34,6 +34,7 @@ export const useCadastroStore = create<CadastroState>()(
               nome: novoNome,
             },
           })),
+        //
       }),
       {
         name: "cadastro-storage",
