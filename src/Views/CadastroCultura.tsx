@@ -1,6 +1,6 @@
 import { Feather } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, ToastAndroid, View } from "react-native";
 import { FAB, Text, TextInput } from "react-native-paper";
 import { useCadastroStore } from "../stores/useCadastroStore";
 export default function CadastroCultura({ navigation }: { navigation: any }) {
@@ -23,10 +23,16 @@ export default function CadastroCultura({ navigation }: { navigation: any }) {
     setTempMax("0");
     // Salvar os dados no banco
   }, []);
+  function showToast() {
+    ToastAndroid.show("Dê um nome para a cultura!", ToastAndroid.SHORT);
+  }
   return (
     <View style={styles.container}>
       <Text variant="labelLarge">Nome</Text>
-      <TextInput label={"Nome da cultura"} onChangeText={(text) => setName(text)}/>
+      <TextInput
+        label={"Nome da cultura"}
+        onChangeText={(text) => setName(text)}
+      />
       <View>
         <Text variant="labelLarge">Luminosidade (L)</Text>
         <View style={{ flexDirection: "row", gap: 4 }}>
@@ -78,6 +84,10 @@ export default function CadastroCultura({ navigation }: { navigation: any }) {
 
       <FAB
         onPress={() => {
+          if (!name) {
+            showToast();
+            return;
+          }
           adicionar_cultura({
             id: Math.random().toString(),
             nome: name,
