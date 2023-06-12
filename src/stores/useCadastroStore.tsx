@@ -7,6 +7,7 @@ interface CadastroState {
   cadastro: Usuario;
   adicionar_cultura: (cultura: Cultura) => Promise<void>;
   update_name: (novoNome: string) => void;
+  remover_cultura: (id: string) => void;
 }
 
 export const useCadastroStore = create<CadastroState>()(
@@ -24,7 +25,7 @@ export const useCadastroStore = create<CadastroState>()(
           set((state) => ({
             cadastro: {
               ...state.cadastro,
-              culturas: [...state.cadastro.culturas || [], cultura],
+              culturas: [...(state.cadastro.culturas || []), cultura],
             },
           })),
         update_name: (novoNome: string) =>
@@ -35,6 +36,15 @@ export const useCadastroStore = create<CadastroState>()(
             },
           })),
         //
+        remover_cultura: (id: string) =>
+          set((state) => ({
+            cadastro: {
+              ...state.cadastro,
+              culturas: state.cadastro.culturas.filter(
+                (cultura) => cultura.id !== id
+              ),
+            },
+          })),
       }),
       {
         name: "cadastro-storage",

@@ -1,7 +1,7 @@
 export type Cultura = {
   id: string;
-  nome: string;
-  luminosidadeMinima?: number | string;
+  nome?: string | undefined;
+  luminosidadeMinima?: number | string | undefined;
   luminosidadeMaxima?: number | string;
   temperaturaMinima?: number | string;
   temperaturaMaxima?: number | string;

@@ -42,7 +42,6 @@ export default function CadastroCultura({ navigation }: { navigation: any }) {
             keyboardType="numeric"
             onChangeText={(text) => setLumenMin(text)}
           />
-          <Text>{name}</Text>
           <TextInput
             label={"Máx"}
             style={{ flex: 1 }}

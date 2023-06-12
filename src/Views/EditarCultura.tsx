@@ -10,6 +10,7 @@ import {
   TextInput,
   useTheme,
 } from "react-native-paper";
+import { useCadastroStore } from "../stores/useCadastroStore";
 export default function EditarCultura({
   navigation,
   route,
@@ -19,16 +20,28 @@ export default function EditarCultura({
 }) {
   // TODO: Criar custom hooks
   const { itemId } = route.params;
-  const [lumenMin, setLumenMin] = React.useState<string | undefined>(undefined);
-  const [lumenMax, setLumenMax] = React.useState<string | undefined>(undefined);
-  const [humidadeMin, setHumidadeMin] = React.useState<string | undefined>(
+  const { cadastro, remover_cultura } = useCadastroStore();
+  const hortalica = cadastro.culturas.find((item) => item.id === itemId);
+
+  const [name, setName] = React.useState<string | undefined>("");
+  const [lumenMin, setLumenMin] = React.useState<string | number | undefined>(
     undefined
   );
-  const [humidadeMax, setHumidadeMax] = React.useState<string | undefined>(
+  const [lumenMax, setLumenMax] = React.useState<string | number | undefined>(
     undefined
   );
-  const [tempMin, setTempMin] = React.useState<string | undefined>(undefined);
-  const [tempMax, setTempMax] = React.useState<string | undefined>(undefined);
+  const [humidadeMin, setHumidadeMin] = React.useState<
+    string | number | undefined
+  >(undefined);
+  const [humidadeMax, setHumidadeMax] = React.useState<
+    string | number | undefined
+  >(undefined);
+  const [tempMin, setTempMin] = React.useState<string | number | undefined>(
+    undefined
+  );
+  const [tempMax, setTempMax] = React.useState<string | number | undefined>(
+    undefined
+  );
 
   const [visible, setVisible] = React.useState(false);
 
@@ -38,19 +51,30 @@ export default function EditarCultura({
 
   const theme = useTheme();
 
+  function handleRemoverCultura(id: string) {
+    remover_cultura(id);
+  }
+
   React.useEffect(() => {
     // Carregar os dados do banco
-    setLumenMin("0");
-    setLumenMax("0");
-    setHumidadeMin("0");
-    setHumidadeMax("0");
-    setTempMin("0");
-    setTempMax("0");
+    console.log("🚀 ~ file: EditarCultura.tsx:25 ~ hortalica:", hortalica);
+    setName(hortalica?.nome);
+    setLumenMin(hortalica?.luminosidadeMinima);
+    setLumenMax(hortalica?.luminosidadeMaxima);
+    setHumidadeMin(hortalica?.humidadeMinima);
+    setHumidadeMax(hortalica?.humidadeMaxima);
+    setTempMin(hortalica?.temperaturaMinima);
+    setTempMax(hortalica?.temperaturaMaxima);
     // Alterar nos estados
   }, []);
   return (
     <View style={styles.container}>
-      <TextInput label={"Nome"} />
+      <Text variant="labelLarge">Nome</Text>
+      <TextInput
+        label={"Nome da cultura"}
+        onChangeText={(text) => setName(text)}
+        value={name?.toString()}
+      />
       <View>
         <Text variant="labelLarge">Luminosidade (L)</Text>
         <View style={{ flexDirection: "row", gap: 4 }}>
@@ -59,14 +83,14 @@ export default function EditarCultura({
             style={{ flex: 1 }}
             keyboardType="numeric"
             onChangeText={(text) => setLumenMin(text)}
-            value={lumenMin}
+            value={lumenMin?.toString()}
           />
           <TextInput
             label={"Máx"}
             style={{ flex: 1 }}
             keyboardType="numeric"
             onChangeText={(text) => setLumenMax(text)}
-            value={lumenMax}
+            value={lumenMax?.toString()}
           />
         </View>
         <Text variant="labelLarge">Humidade (%)</Text>
@@ -76,14 +100,14 @@ export default function EditarCultura({
             style={{ flex: 1 }}
             keyboardType="numeric"
             onChangeText={(text) => setHumidadeMin(text)}
-            value={humidadeMin}
+            value={humidadeMin?.toString()}
           />
           <TextInput
             label={"Máx"}
             style={{ flex: 1 }}
             keyboardType="numeric"
             onChangeText={(text) => setHumidadeMax(text)}
-            value={humidadeMax}
+            value={humidadeMax?.toString()}
           />
         </View>
         <Text variant="labelLarge">Temperatura (ºC)</Text>
@@ -93,14 +117,14 @@ export default function EditarCultura({
             style={{ flex: 1 }}
             keyboardType="numeric"
             onChangeText={(text) => setTempMin(text)}
-            value={tempMin}
+            value={tempMin?.toString()}
           />
           <TextInput
             label={"Máx"}
             style={{ flex: 1 }}
             keyboardType="numeric"
             onChangeText={(text) => setTempMax(text)}
-            value={tempMax}
+            value={tempMax?.toString()}
           />
         </View>
         <Portal>
@@ -120,7 +144,11 @@ export default function EditarCultura({
             >
               <Button
                 mode="outlined"
-                onPress={() => console.log("Deletado")}
+                onPress={() => {
+                  remover_cultura(itemId);
+                  console.log("Deletado");
+                  navigation.replace("Culturas");
+                }}
                 textColor="#000"
               >
                 SIM
