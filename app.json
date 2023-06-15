@@ -21,7 +21,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/flower-icon.png",
         "backgroundColor": "#106D20"
-      }
+      },
+      "package": "com.guilherme_daniel.hortavertical"
     },
     "web": {
       "favicon": "./assets/favicon-32x32.png"
