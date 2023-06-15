@@ -1,7 +1,7 @@
 import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
-import { FAB, Text } from "react-native-paper";
+import { FAB } from "react-native-paper";
 import BtnFull from "../components/BtnFull";
 import { useCadastroStore } from "../stores/useCadastroStore";
 
@@ -9,8 +9,6 @@ export default function Culturas({ navigation }: { navigation: any }) {
   const { cadastro } = useCadastroStore();
   return (
     <View style={styles.container}>
-      <Text variant="headlineSmall">Culturas da Horta</Text>
-
       <FlatList
         data={cadastro?.culturas}
         renderItem={({ item }) => (
@@ -61,5 +59,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6FFF4",
     gap: 4,
     paddingHorizontal: 8,
+    paddingTop: 8,
   },
 });

@@ -8,6 +8,7 @@ interface CadastroState {
   adicionar_cultura: (cultura: Cultura) => Promise<void>;
   update_name: (novoNome: string) => void;
   remover_cultura: (id: string) => void;
+  atualizar_cultura: (id: string, novosDados: Cultura) => void;
 }
 
 export const useCadastroStore = create<CadastroState>()(
@@ -42,6 +43,16 @@ export const useCadastroStore = create<CadastroState>()(
               ...state.cadastro,
               culturas: state.cadastro.culturas.filter(
                 (cultura) => cultura.id !== id
+              ),
+            },
+          })),
+        //
+        atualizar_cultura: (id: string, novosDados: Cultura) =>
+          set((state) => ({
+            cadastro: {
+              ...state.cadastro,
+              culturas: state.cadastro.culturas.map((cult) =>
+                cult.id === id ? novosDados : cult
               ),
             },
           })),

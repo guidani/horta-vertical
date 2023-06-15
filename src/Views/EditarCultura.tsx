@@ -20,7 +20,7 @@ export default function EditarCultura({
 }) {
   // TODO: Criar custom hooks
   const { itemId } = route.params;
-  const { cadastro, remover_cultura } = useCadastroStore();
+  const { cadastro, remover_cultura, atualizar_cultura } = useCadastroStore();
   const hortalica = cadastro.culturas.find((item) => item.id === itemId);
 
   const [name, setName] = React.useState<string | undefined>("");
@@ -177,6 +177,16 @@ export default function EditarCultura({
       />
       <FAB
         onPress={() => {
+          atualizar_cultura(itemId, {
+            id: itemId,
+            nome: name,
+            humidadeMaxima: humidadeMax,
+            humidadeMinima: humidadeMin,
+            luminosidadeMaxima: lumenMax,
+            luminosidadeMinima: lumenMin,
+            temperaturaMaxima: tempMax,
+            temperaturaMinima: tempMin,
+          });
           console.log("Salvo no banco de dados!!!");
           navigation.goBack();
         }}
