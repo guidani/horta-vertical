@@ -6,14 +6,28 @@ import { Chip, Divider, IconButton, Text } from "react-native-paper";
 export default function DisplaySaudeCultura({
   navigation,
   itemId,
+  nome,
+  luminosidadeMinima,
+  luminosidadeMaxima,
+  temperaturaMinima,
+  temperaturaMaxima,
+  humidadeMinima,
+  humidadeMaxima,
 }: {
   navigation: any;
   itemId: string | number;
+  nome: string | undefined;
+  luminosidadeMinima?: number | string | undefined;
+  luminosidadeMaxima?: number | string | undefined;
+  temperaturaMinima?: number | string | undefined;
+  temperaturaMaxima?: number | string | undefined;
+  humidadeMinima?: number | string | undefined;
+  humidadeMaxima?: number | string | undefined;
 }) {
   return (
     <View style={styles.container}>
       <View style={styles.headerStyle}>
-        <Text variant="headlineSmall">Cebolinha</Text>
+        <Text variant="headlineSmall">{nome}</Text>
         <View style={styles.btnInline}>
           <IconButton
             icon={({ color, size }) => {
@@ -42,20 +56,20 @@ export default function DisplaySaudeCultura({
       </View>
       <View>
         <Text variant="titleMedium">Luminosidade</Text>
-        <Text>Min: 2</Text>
-        <Text>Max: 12</Text>
+        <Text>Min: {luminosidadeMinima}</Text>
+        <Text>Max: {luminosidadeMaxima}</Text>
         <Text>Atual: 8</Text>
       </View>
       <View>
         <Text variant="titleMedium">Humidade</Text>
-        <Text>Min: 2</Text>
-        <Text>Max: 12</Text>
+        <Text>Min: {humidadeMinima}</Text>
+        <Text>Max: {humidadeMaxima}</Text>
         <Text>Atual: 8</Text>
       </View>
       <View>
         <Text variant="titleMedium">Temperatura</Text>
-        <Text>Min: 2</Text>
-        <Text>Max: 12</Text>
+        <Text>Min: {temperaturaMinima}</Text>
+        <Text>Max: {temperaturaMaxima}</Text>
         <Text>Atual: 8</Text>
       </View>
       <Divider />
