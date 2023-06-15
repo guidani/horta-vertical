@@ -72,7 +72,7 @@ export default function DisplaySaudeCultura({
         <Text>Max: {temperaturaMaxima}</Text>
         <Text>Atual: 8</Text>
       </View>
-      <Divider />
+      <Divider style={{ marginVertical: 8 }} />
     </View>
   );
 }
