@@ -1,6 +1,7 @@
 import { Feather } from "@expo/vector-icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
+import database from "@react-native-firebase/database";
 import { StyleSheet, View } from "react-native";
 import { Divider, FAB, Text } from "react-native-paper";
 import BtnFull from "../components/BtnFull";
@@ -8,8 +9,20 @@ import DisplayData from "../components/DisplayData";
 import { useCadastroStore } from "../stores/useCadastroStore";
 
 export default function VisaoGeral({ navigation }: { navigation: any }) {
+  const [humidadeValor, setHumidadeValor] = useState();
   const { nome, culturas } = useCadastroStore((state) => state.cadastro);
   const total_de_hortas = culturas?.length;
+
+  useEffect(() => {
+    const onValueChange = database()
+      .ref("/humidade")
+      .on("value", (snapshot) => {
+        console.log("Data", snapshot.val());
+      });
+
+    return () => database().ref("/humidade").off("value", onValueChange);
+  }, []);
+
   if (culturas?.length === 0) {
     return (
       <View
@@ -36,7 +49,9 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
   }
   return (
     <View style={styles.container}>
-      <Text variant="headlineSmall" style={{marginVertical: 8}}>Olá, {nome}</Text>
+      <Text variant="headlineSmall" style={{ marginVertical: 8 }}>
+        Olá, {nome}
+      </Text>
 
       <View style={styles.displayDataSection}>
         <DisplayData label="Luminosidade" data={99} iconName={"thermometer"} />
