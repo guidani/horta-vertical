@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:365478941686:android:24cac87d2a9edd2a9cedd7",
+        "mobilesdk_app_id": "1:365478941686:android:5e9149828aebe8759cedd7",
         "android_client_info": {
-          "package_name": "com.guilherme_daniel.horta_vertical"
+          "package_name": "com.guilherme_daniel.hortavertical"
         }
       },
       "oauth_client": [

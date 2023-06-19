@@ -18,6 +18,7 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
       .ref("/humidade")
       .on("value", (snapshot) => {
         console.log("Data", snapshot.val());
+        setHumidadeValor(snapshot.val())
       });
 
     return () => database().ref("/humidade").off("value", onValueChange);
@@ -56,7 +57,7 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
       <View style={styles.displayDataSection}>
         <DisplayData label="Luminosidade" data={99} iconName={"thermometer"} />
         <DisplayData label="Temperatura" data={99} iconName={"sun"} />
-        <DisplayData label="Humidade" data={99} iconName={"cloud"} />
+        <DisplayData label="Humidade" data={humidadeValor} iconName={"cloud"} />
       </View>
       <Divider style={{ marginVertical: 4 }} />
       <BtnFull
