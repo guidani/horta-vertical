@@ -11,13 +11,13 @@ import { useCadastroStore } from "../stores/useCadastroStore";
 export default function VisaoGeral({ navigation }: { navigation: any }) {
   const [humidadeValor, setHumidadeValor] = useState();
   const { nome, culturas } = useCadastroStore((state) => state.cadastro);
-  const total_de_hortas = culturas?.length;
+  
 
   useEffect(() => {
     const onValueChange = database()
       .ref("/humidade")
       .on("value", (snapshot) => {
-        console.log("Data", snapshot.val());
+        
         setHumidadeValor(snapshot.val())
       });
 
