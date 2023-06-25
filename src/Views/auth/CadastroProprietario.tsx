@@ -1,3 +1,4 @@
+import firestore from "@react-native-firebase/firestore";
 import React from "react";
 import { StyleSheet, ToastAndroid, View } from "react-native";
 import { FAB, Text, TextInput } from "react-native-paper";
@@ -14,6 +15,41 @@ export default function CadastroProprietario({
   const { isAuthenticated, updateIsAuthenticated } = useAuthStore();
   function showToast() {
     ToastAndroid.show("Por favor, digite seu nome!", ToastAndroid.SHORT);
+  }
+
+  async function searchUser() {
+    const documents = await firestore()
+      .collection("Users")
+      .where("name", "==", text)
+      .get();
+    if (documents.empty) {
+      console.log("Nada encontrado");
+      return;
+    }
+    documents.forEach((d) => {
+      d.ref
+        .collection("culturas")
+        .get()
+        .then((c) => {
+          if (c.empty) {
+            console.log("Nenhuma cultura");
+          }
+          c.forEach((h) => {
+            console.log("H ID", h.id);
+            console.log("H DOCS", h.data());
+          });
+        });
+    });
+    // .then((documentSnapshot) => {
+    //   if (documentSnapshot.empty) {
+    //     console.log("Nada encontrado");
+    //     return;
+    //   }
+    //   documentSnapshot.forEach((doc) => {
+    //     console.log("ID", doc.id);
+    //     console.log("Data: ", doc.data());
+    //   });
+    // });
   }
   return (
     <View style={styles.container}>
@@ -37,6 +73,7 @@ export default function CadastroProprietario({
           }
           update_name(text);
           updateIsAuthenticated();
+          searchUser();
         }}
       />
     </View>
