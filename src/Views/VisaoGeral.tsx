@@ -10,18 +10,34 @@ import { useCadastroStore } from "../stores/useCadastroStore";
 
 export default function VisaoGeral({ navigation }: { navigation: any }) {
   const [humidadeValor, setHumidadeValor] = useState();
+  const [temperaturaValor, setTemperaturaValor] = useState();
+  const [luminosidadeValor, setLuminosidadeValor] = useState();
   const { nome, culturas } = useCadastroStore((state) => state.cadastro);
-  
 
   useEffect(() => {
-    const onValueChange = database()
+    const onHumidadeChange = database()
       .ref("/humidade")
       .on("value", (snapshot) => {
-        
-        setHumidadeValor(snapshot.val())
+        setHumidadeValor(snapshot.val());
       });
 
-    return () => database().ref("/humidade").off("value", onValueChange);
+    const onTempChange = database()
+      .ref("/temperatura")
+      .on("value", (snapshot) => {
+        setTemperaturaValor(snapshot.val());
+      });
+
+    const onLuminosidadeChange = database()
+      .ref("/luminosidade")
+      .on("value", (snapshot) => {
+        setLuminosidadeValor(snapshot.val());
+      });
+
+    return () => {
+      database().ref("/humidade").off("value", onHumidadeChange);
+      database().ref("/temperatura").off("value", onTempChange);
+      database().ref("/luminosidade").off("value", onLuminosidadeChange);
+    };
   }, []);
 
   if (culturas?.length === 0) {
@@ -55,8 +71,16 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
       </Text>
 
       <View style={styles.displayDataSection}>
-        <DisplayData label="Luminosidade" data={99} iconName={"thermometer"} />
-        <DisplayData label="Temperatura" data={99} iconName={"sun"} />
+        <DisplayData
+          label="Luminosidade"
+          data={luminosidadeValor}
+          iconName={"thermometer"}
+        />
+        <DisplayData
+          label="Temperatura"
+          data={temperaturaValor}
+          iconName={"sun"}
+        />
         <DisplayData label="Humidade" data={humidadeValor} iconName={"cloud"} />
       </View>
       <Divider style={{ marginVertical: 4 }} />
