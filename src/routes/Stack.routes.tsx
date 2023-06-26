@@ -8,11 +8,13 @@ import EditarCultura from "../Views/EditarCultura";
 import SaudeCulturas from "../Views/SaudeCulturas";
 import VisaoGeral from "../Views/VisaoGeral";
 import { useAuthStore } from "../stores/useAuthStore";
+import { useCadastroStore } from "../stores/useCadastroStore";
 
 const Stack = createNativeStackNavigator();
 
 export default function StackRoute() {
-  const { isAuthenticated, updateIsAuthenticated } = useAuthStore();
+  const { updateIsAuthenticated } = useAuthStore();
+  const { update_name, resetState } = useCadastroStore();
   const theme = useTheme();
   return (
     <Stack.Navigator
@@ -30,7 +32,14 @@ export default function StackRoute() {
           headerTitle: "Visão Geral",
           headerTitleAlign: "center",
           headerRight: () => (
-            <Button onPress={() => updateIsAuthenticated()}>SAIR</Button>
+            <Button
+              onPress={() => {
+                resetState();
+                updateIsAuthenticated();
+              }}
+            >
+              SAIR
+            </Button>
           ),
         }}
       />

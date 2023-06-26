@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import { Cultura } from "../domain/entities/cutura";
 import { Usuario } from "../domain/entities/usuario";
-import firestore from "@react-native-firebase/firestore";
+import { useAuthStore } from "./useAuthStore";
 
 interface CadastroState {
   cadastro: Usuario;
@@ -10,12 +10,21 @@ interface CadastroState {
   update_name: (novoNome: string) => void;
   remover_cultura: (id: string) => void;
   atualizar_cultura: (id: string, novosDados: Cultura) => void;
+  resetState: () => void;
 }
 
 export const useCadastroStore = create<CadastroState>()(
   devtools(
     persist(
       (set) => ({
+        resetState: () =>
+          set((state) => ({
+            cadastro: {
+              ...state.cadastro,
+              nome: "",
+              culturas: [],
+            },
+          })),
         cadastro: {
           id: Math.random().toString(),
           nome: "",

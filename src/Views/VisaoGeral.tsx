@@ -1,14 +1,14 @@
 import { Feather } from "@expo/vector-icons";
-import React, { useEffect, useState } from "react";
 import firestore from "@react-native-firebase/firestore";
+import React, { useEffect, useState } from "react";
 
 import database from "@react-native-firebase/database";
 import { StyleSheet, View } from "react-native";
 import { Divider, FAB, Text } from "react-native-paper";
 import BtnFull from "../components/BtnFull";
 import DisplayData from "../components/DisplayData";
-import { useCadastroStore } from "../stores/useCadastroStore";
 import { Cultura } from "../domain/entities/cutura";
+import { useCadastroStore } from "../stores/useCadastroStore";
 
 export default function VisaoGeral({ navigation }: { navigation: any }) {
   const [humidadeValor, setHumidadeValor] = useState();
