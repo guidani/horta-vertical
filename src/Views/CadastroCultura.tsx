@@ -1,10 +1,12 @@
 import { Feather } from "@expo/vector-icons";
+import firestore from "@react-native-firebase/firestore";
+
 import React from "react";
 import { StyleSheet, ToastAndroid, View } from "react-native";
 import { FAB, Text, TextInput } from "react-native-paper";
 import { useCadastroStore } from "../stores/useCadastroStore";
 export default function CadastroCultura({ navigation }: { navigation: any }) {
-  const { adicionar_cultura } = useCadastroStore();
+  const { adicionar_cultura, cadastro } = useCadastroStore();
   const [name, setName] = React.useState<string>("");
   const [lumenMin, setLumenMin] = React.useState<string | undefined>("");
   const [lumenMax, setLumenMax] = React.useState<string | undefined>("");
@@ -25,6 +27,26 @@ export default function CadastroCultura({ navigation }: { navigation: any }) {
   }, []);
   function showToast() {
     ToastAndroid.show("Dê um nome para a cultura!", ToastAndroid.SHORT);
+  }
+
+  async function cadastroCulturaNoBanco() {
+    const documents = await firestore()
+      .collection("Users")
+      .where("name", "==", cadastro.nome)
+      .get();
+    if (documents.empty) return;
+    documents.forEach((doc) => {
+      const docId = doc.id;
+      firestore().collection("Users").doc(docId).collection("culturas").add({
+        nome: name,
+        humidadeMaxima: humidadeMax,
+        humidadeMinima: humidadeMin,
+        luminosidadeMaxima: lumenMax,
+        luminosidadeMinima: lumenMin,
+        temperaturaMaxima: tempMax,
+        temperaturaMinima: tempMin,
+      });
+    });
   }
   return (
     <View style={styles.container}>
@@ -82,11 +104,12 @@ export default function CadastroCultura({ navigation }: { navigation: any }) {
       </View>
 
       <FAB
-        onPress={() => {
+        onPress={async () => {
           if (!name) {
             showToast();
             return;
           }
+          await cadastroCulturaNoBanco();
           adicionar_cultura({
             id: Math.random().toString(),
             nome: name,
