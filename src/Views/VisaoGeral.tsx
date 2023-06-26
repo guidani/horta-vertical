@@ -8,12 +8,14 @@ import { Divider, FAB, Text } from "react-native-paper";
 import BtnFull from "../components/BtnFull";
 import DisplayData from "../components/DisplayData";
 import { useCadastroStore } from "../stores/useCadastroStore";
+import { Cultura } from "../domain/entities/cutura";
 
 export default function VisaoGeral({ navigation }: { navigation: any }) {
   const [humidadeValor, setHumidadeValor] = useState();
   const [temperaturaValor, setTemperaturaValor] = useState();
   const [luminosidadeValor, setLuminosidadeValor] = useState();
   const { nome, culturas } = useCadastroStore((state) => state.cadastro);
+  const { adicionar_cultura } = useCadastroStore();
 
   useEffect(() => {
     const onHumidadeChange = database()
@@ -47,7 +49,6 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
       .where("name", "==", nome)
       .get();
     if (documents.empty) {
-      // Alert.alert("usuário não encontrado.");
       return;
     }
     documents.forEach((d) => {
@@ -61,10 +62,15 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
           c.forEach((h) => {
             console.log("H ID", h.id);
             console.log("H DOCS", h.data());
+            adicionar_cultura(h.data() as Cultura);
           });
         });
     });
   }
+
+  useEffect(() => {
+    searchUser();
+  }, []);
 
   if (culturas?.length === 0) {
     return (
