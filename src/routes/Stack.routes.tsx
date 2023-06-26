@@ -1,16 +1,18 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { useTheme } from "react-native-paper";
+import { Button, useTheme } from "react-native-paper";
 import CadastroCultura from "../Views/CadastroCultura";
 import CadastroHorta from "../Views/CadastroHorta";
 import Culturas from "../Views/Culturas";
 import EditarCultura from "../Views/EditarCultura";
 import SaudeCulturas from "../Views/SaudeCulturas";
 import VisaoGeral from "../Views/VisaoGeral";
+import { useAuthStore } from "../stores/useAuthStore";
 
 const Stack = createNativeStackNavigator();
 
 export default function StackRoute() {
+  const { isAuthenticated, updateIsAuthenticated } = useAuthStore();
   const theme = useTheme();
   return (
     <Stack.Navigator
@@ -27,6 +29,9 @@ export default function StackRoute() {
         options={{
           headerTitle: "Visão Geral",
           headerTitleAlign: "center",
+          headerRight: () => (
+            <Button onPress={() => updateIsAuthenticated()}>SAIR</Button>
+          ),
         }}
       />
       <Stack.Screen

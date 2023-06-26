@@ -23,34 +23,31 @@ export default function CadastroProprietario({
       .where("name", "==", text)
       .get();
     if (documents.empty) {
-      console.log("Nada encontrado");
+      // Cria um usuário
+      const documentoCriado = await firestore()
+        .collection("Users")
+        .add({ name: text });
+      const criarDocCulturas = await documentoCriado
+        .collection("culturas")
+        .add({});
       return;
     }
-    documents.forEach((d) => {
-      d.ref
-        .collection("culturas")
-        .get()
-        .then((c) => {
-          if (c.empty) {
-            console.log("Nenhuma cultura");
-          }
-          c.forEach((h) => {
-            console.log("H ID", h.id);
-            console.log("H DOCS", h.data());
-          });
-        });
-    });
-    // .then((documentSnapshot) => {
-    //   if (documentSnapshot.empty) {
-    //     console.log("Nada encontrado");
-    //     return;
-    //   }
-    //   documentSnapshot.forEach((doc) => {
-    //     console.log("ID", doc.id);
-    //     console.log("Data: ", doc.data());
-    //   });
+    // documents.forEach((d) => {
+    //   d.ref
+    //     .collection("culturas")
+    //     .get()
+    //     .then((c) => {
+    //       if (c.empty) {
+    //         console.log("Nenhuma cultura");
+    //       }
+    //       c.forEach((h) => {
+    //         console.log("H ID", h.id);
+    //         console.log("H DOCS", h.data());
+    //       });
+    //     });
     // });
   }
+
   return (
     <View style={styles.container}>
       <Text variant="headlineLarge" style={styles.headerStyle}>
@@ -72,8 +69,8 @@ export default function CadastroProprietario({
             return;
           }
           update_name(text);
-          updateIsAuthenticated();
           searchUser();
+          updateIsAuthenticated();
         }}
       />
     </View>

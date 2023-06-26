@@ -1,5 +1,6 @@
 import { Feather } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
+import firestore from "@react-native-firebase/firestore";
 
 import database from "@react-native-firebase/database";
 import { StyleSheet, View } from "react-native";
@@ -39,6 +40,31 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
       database().ref("/luminosidade").off("value", onLuminosidadeChange);
     };
   }, []);
+
+  async function searchUser() {
+    const documents = await firestore()
+      .collection("Users")
+      .where("name", "==", nome)
+      .get();
+    if (documents.empty) {
+      // Alert.alert("usuário não encontrado.");
+      return;
+    }
+    documents.forEach((d) => {
+      d.ref
+        .collection("culturas")
+        .get()
+        .then((c) => {
+          if (c.empty) {
+            console.log("Nenhuma cultura");
+          }
+          c.forEach((h) => {
+            console.log("H ID", h.id);
+            console.log("H DOCS", h.data());
+          });
+        });
+    });
+  }
 
   if (culturas?.length === 0) {
     return (

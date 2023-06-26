@@ -22,6 +22,7 @@ export const useCadastroStore = create<CadastroState>()(
         },
         adicionar_cultura: async (cultura: Cultura) =>
           // buscar dados no banco de dados e adicionar
+
           // https://github.com/pmndrs/zustand#async-actions
           set((state) => ({
             cadastro: {
