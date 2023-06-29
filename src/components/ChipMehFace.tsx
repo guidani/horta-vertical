@@ -16,7 +16,7 @@ export default function ChipMehFace() {
           backgroundColor: "#F3DE2C",
         }}
       >
-        Meh
+        Atenção
       </Chip>
     </View>
   );

@@ -30,6 +30,10 @@ export default function DisplaySaudeCultura({
   const [temperaturaValor, setTemperaturaValor] = useState();
   const [luminosidadeValor, setLuminosidadeValor] = useState();
 
+  function estaBem(valorMaximo: any, valorMinimo: any, referencia: any) {
+    return referencia > valorMaximo || referencia < valorMinimo;
+  }
+
   useEffect(() => {
     const onHumidadeChange = database()
       .ref("/humidade")
@@ -85,19 +89,49 @@ export default function DisplaySaudeCultura({
           </Chip>
         </View>
       </View>
-      <View>
+      <View
+        style={{
+          backgroundColor: estaBem(
+            luminosidadeMaxima,
+            luminosidadeMinima,
+            luminosidadeValor
+          )
+            ? "yellow"
+            : "",
+        }}
+      >
         <Text variant="titleMedium">Luminosidade</Text>
         <Text>Min: {luminosidadeMinima}</Text>
         <Text>Max: {luminosidadeMaxima}</Text>
         <Text>Atual: {luminosidadeValor}</Text>
       </View>
-      <View>
+      <View
+        style={{
+          backgroundColor: estaBem(
+            humidadeMaxima,
+            humidadeMinima,
+            humidadeValor
+          )
+            ? "yellow"
+            : "",
+        }}
+      >
         <Text variant="titleMedium">Humidade</Text>
         <Text>Min: {humidadeMinima}</Text>
         <Text>Max: {humidadeMaxima}</Text>
         <Text>Atual: {humidadeValor}</Text>
       </View>
-      <View>
+      <View
+        style={{
+          backgroundColor: estaBem(
+            temperaturaMaxima,
+            temperaturaMinima,
+            temperaturaValor
+          )
+            ? "yellow"
+            : "",
+        }}
+      >
         <Text variant="titleMedium">Temperatura</Text>
         <Text>Min: {temperaturaMinima}</Text>
         <Text>Max: {temperaturaMaxima}</Text>
