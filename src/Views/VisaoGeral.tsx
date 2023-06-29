@@ -101,16 +101,20 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
 
       <View style={styles.displayDataSection}>
         <DisplayData
-          label="Luminosidade"
+          label="Luminosidade (h)"
           data={luminosidadeValor}
           iconName={"thermometer"}
         />
         <DisplayData
-          label="Temperatura"
+          label="Temperatura (°C)"
           data={temperaturaValor}
           iconName={"sun"}
         />
-        <DisplayData label="Humidade" data={humidadeValor} iconName={"cloud"} />
+        <DisplayData
+          label="Humidade (%)"
+          data={humidadeValor}
+          iconName={"cloud"}
+        />
       </View>
       <Divider style={{ marginVertical: 4 }} />
       <BtnFull
