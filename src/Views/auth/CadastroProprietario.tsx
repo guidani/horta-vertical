@@ -32,20 +32,6 @@ export default function CadastroProprietario({
         .add({});
       return;
     }
-    // documents.forEach((d) => {
-    //   d.ref
-    //     .collection("culturas")
-    //     .get()
-    //     .then((c) => {
-    //       if (c.empty) {
-    //         console.log("Nenhuma cultura");
-    //       }
-    //       c.forEach((h) => {
-    //         console.log("H ID", h.id);
-    //         console.log("H DOCS", h.data());
-    //       });
-    //     });
-    // });
   }
 
   return (

@@ -57,7 +57,7 @@ export default function EditarCultura({
 
   React.useEffect(() => {
     // Carregar os dados do banco
-    console.log("🚀 ~ file: EditarCultura.tsx:25 ~ hortalica:", hortalica);
+
     setName(hortalica?.nome);
     setLumenMin(hortalica?.luminosidadeMinima);
     setLumenMax(hortalica?.luminosidadeMaxima);
@@ -146,7 +146,7 @@ export default function EditarCultura({
                 mode="outlined"
                 onPress={() => {
                   remover_cultura(itemId);
-                  console.log("Deletado");
+
                   navigation.replace("Culturas");
                 }}
                 textColor="#000"
@@ -167,7 +167,6 @@ export default function EditarCultura({
 
       <FAB
         onPress={() => {
-          console.log("Deletado!!!");
           showModal();
         }}
         style={[styles.fab_del, { backgroundColor: theme.colors.error }]}
@@ -187,7 +186,7 @@ export default function EditarCultura({
             temperaturaMaxima: tempMax,
             temperaturaMinima: tempMin,
           });
-          console.log("Salvo no banco de dados!!!");
+
           navigation.goBack();
         }}
         style={[styles.fab_save, { backgroundColor: theme.colors.primary }]}

@@ -57,11 +57,8 @@ export default function VisaoGeral({ navigation }: { navigation: any }) {
         .get()
         .then((c) => {
           if (c.empty) {
-            console.log("Nenhuma cultura");
           }
           c.forEach((h) => {
-            console.log("H ID", h.id);
-            console.log("H DOCS", h.data());
             adicionar_cultura(h.data() as Cultura);
           });
         });
