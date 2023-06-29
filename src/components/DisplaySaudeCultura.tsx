@@ -1,7 +1,9 @@
 import { Feather } from "@expo/vector-icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Chip, Divider, IconButton, Text } from "react-native-paper";
+
+import database from "@react-native-firebase/database";
 
 export default function DisplaySaudeCultura({
   navigation,
@@ -24,6 +26,35 @@ export default function DisplaySaudeCultura({
   humidadeMinima?: number | string | undefined;
   humidadeMaxima?: number | string | undefined;
 }) {
+  const [humidadeValor, setHumidadeValor] = useState();
+  const [temperaturaValor, setTemperaturaValor] = useState();
+  const [luminosidadeValor, setLuminosidadeValor] = useState();
+
+  useEffect(() => {
+    const onHumidadeChange = database()
+      .ref("/humidade")
+      .on("value", (snapshot) => {
+        setHumidadeValor(snapshot.val());
+      });
+
+    const onTempChange = database()
+      .ref("/temperatura")
+      .on("value", (snapshot) => {
+        setTemperaturaValor(snapshot.val());
+      });
+
+    const onLuminosidadeChange = database()
+      .ref("/luminosidade")
+      .on("value", (snapshot) => {
+        setLuminosidadeValor(snapshot.val());
+      });
+
+    return () => {
+      database().ref("/humidade").off("value", onHumidadeChange);
+      database().ref("/temperatura").off("value", onTempChange);
+      database().ref("/luminosidade").off("value", onLuminosidadeChange);
+    };
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.headerStyle}>
@@ -58,19 +89,19 @@ export default function DisplaySaudeCultura({
         <Text variant="titleMedium">Luminosidade</Text>
         <Text>Min: {luminosidadeMinima}</Text>
         <Text>Max: {luminosidadeMaxima}</Text>
-        <Text>Atual: 8</Text>
+        <Text>Atual: {luminosidadeValor}</Text>
       </View>
       <View>
         <Text variant="titleMedium">Humidade</Text>
         <Text>Min: {humidadeMinima}</Text>
         <Text>Max: {humidadeMaxima}</Text>
-        <Text>Atual: 8</Text>
+        <Text>Atual: {humidadeValor}</Text>
       </View>
       <View>
         <Text variant="titleMedium">Temperatura</Text>
         <Text>Min: {temperaturaMinima}</Text>
         <Text>Max: {temperaturaMaxima}</Text>
-        <Text>Atual: 8</Text>
+        <Text>Atual: {temperaturaValor}</Text>
       </View>
       <Divider style={{ marginVertical: 8 }} />
     </View>
